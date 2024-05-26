@@ -21,7 +21,9 @@ export default function DesktopNavigation() {
     >
       <div className="flex flex-col justify-center items-center">
         <div className="pb-8 text-center lg:pb-10">
-          <Link to="/">NoteFlow</Link>
+          <Link to="/" className="text-xl">
+            NoteFlow
+          </Link>
         </div>
         <ul className="">
           {navigationLinks.map(({ path, icon }, index) => (
