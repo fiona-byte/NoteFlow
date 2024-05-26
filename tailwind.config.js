@@ -11,6 +11,9 @@ module.exports = {
         '2xl': '1400px',
       },
     },
+    fontFamily: {
+      'body': ['"Clash Display"', 'sans-serif'],
+    },
     extend: {
       colors: {
         main: '#F2E4DC',
@@ -51,7 +54,8 @@ module.exports = {
         },
       },
       dropShadow: {
-        DEFAULT: '4px 0 4px rgba(58, 50, 53, 0.2)',
+        DEFAULT: '2px 0px 5px rgba(58, 50, 53, 0.2)',
+        secondary: '0px 4px 5px rgba(58, 50, 53, 0.2)'
       },
       borderRadius: {
         lg: 'var(--radius)',
