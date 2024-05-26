@@ -4,7 +4,6 @@ import { NavigationLinksProps } from "@/types";
 import Heart from "@/assets/svgs/heart";
 import NotesIcon from "@/assets/svgs/notes";
 import Trash from "@/assets/svgs/trash";
-import "./style.css";
 
 const navigationLinks: NavigationLinksProps[] = [
   { path: "/", icon: <NotesIcon /> },
