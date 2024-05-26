@@ -71,9 +71,10 @@
       @apply border-border;
     }
     html {
-     font-family: "Clash Display", sans-serif;
+      font-family: 'Clash Grotesk', sans-serif;    
     }
     body {
       @apply bg-background text-foreground;
+      font-weight: 300;
     }
   }

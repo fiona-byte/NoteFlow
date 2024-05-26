@@ -12,7 +12,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      'body': ['"Clash Display"', 'sans-serif'],
+      'body': ['"Clash Grotesk"', 'sans-serif'],
     },
     extend: {
       colors: {
