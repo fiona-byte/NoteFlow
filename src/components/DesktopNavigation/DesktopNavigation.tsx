@@ -6,9 +6,9 @@ import NotesIcon from "@/assets/svgs/notes";
 import Trash from "@/assets/svgs/trash";
 
 const navigationLinks: NavigationLinksProps[] = [
-  { path: "/", icon: <NotesIcon /> },
-  { path: "/favourites", icon: <Heart /> },
-  { path: "/trash", icon: <Trash /> },
+  { path: "/", Icon: NotesIcon },
+  { path: "/favourites", Icon: Heart },
+  { path: "/trash", Icon: Trash },
 ];
 
 export default function DesktopNavigation() {
@@ -20,13 +20,13 @@ export default function DesktopNavigation() {
       )}
     >
       <div className="flex flex-col justify-center items-center">
-        <div className="pb-8 text-center lg:pb-10">
+        <div className="pb-12 text-center lg:pb-14">
           <Link to="/" className="text-xl">
             NoteFlow
           </Link>
         </div>
-        <ul className="">
-          {navigationLinks.map(({ path, icon }, index) => (
+        <ul>
+          {navigationLinks.map(({ path, Icon }, index) => (
             <li key={index} className="pb-5 lg:pb-6">
               <NavLink
                 to={path}
@@ -36,7 +36,9 @@ export default function DesktopNavigation() {
                   })
                 }
               >
-                {icon}
+                {({ isActive }) => (
+                  <Icon className={isActive ? "w-8 h-8" : ""} />
+                )}
               </NavLink>
             </li>
           ))}

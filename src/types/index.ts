@@ -1,4 +1,6 @@
+import React from "react";
+
 export type NavigationLinksProps = {
   path: string;
-  icon: JSX.Element;
+  Icon: React.FC< {className?: string}>;
 };
