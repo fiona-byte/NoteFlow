@@ -1,8 +1,13 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import NotesArchive from "./pages/NotesArchive/NotesArchive";
+
 function App() {
   return (
-    <div>
-      <h2>Hello</h2>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<NotesArchive />} />
+    </Routes>
+    </BrowserRouter>
   );
 }
 

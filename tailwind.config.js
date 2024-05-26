@@ -13,7 +13,10 @@ module.exports = {
     },
     extend: {
       colors: {
-        border: 'hsl(var(--border))',
+        main: '#F2E4DC',
+        tertiary: '#E5C8B8',
+        border: '#625B5D',
+        textColor: '#3A3235',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
@@ -46,6 +49,9 @@ module.exports = {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
         },
+      },
+      dropShadow: {
+        DEFAULT: '4px 0 4px rgba(58, 50, 53, 0.2)',
       },
       borderRadius: {
         lg: 'var(--radius)',

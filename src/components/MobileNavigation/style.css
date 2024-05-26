@@ -1,0 +1,21 @@
+.navigation-wrapper {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navigation-wrapper::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 34px;
+    left: 0;
+    z-index: -1;
+    width: 105%;
+    margin: 0 calc(50% - (105% / 2));
+    height: 60px;
+    border-radius: 50% / 30px;
+    background-color: #F2E4DC;
+    box-shadow: 2px 0px 5px rgba(58, 50, 53, 0.2);
+}
