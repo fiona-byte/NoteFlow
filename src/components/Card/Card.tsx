@@ -1,6 +1,5 @@
 import Heart from "@/assets/svgs/heart";
 import Tag from "@/assets/svgs/tag";
-import "./style.css";
 
 export default function Card() {
   return (
