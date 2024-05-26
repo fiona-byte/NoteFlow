@@ -12,7 +12,7 @@ type NavigationLinksProps = {
 
 const navigationLinks: NavigationLinksProps[] = [
   { path: "/", icon: <NotesIcon /> },
-  { path: "/heary", icon: <Heart /> },
+  { path: "/favourites", icon: <Heart /> },
   { path: "/trash", icon: <Trash /> },
 ];
 
