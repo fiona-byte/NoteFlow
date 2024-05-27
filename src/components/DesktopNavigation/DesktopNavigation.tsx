@@ -15,7 +15,7 @@ export default function DesktopNavigation() {
   return (
     <nav
       className={cn(
-        "fixed top-0 left-0 h-full bg-main px-5 pt-10 z-10 shadow lg:px-8 lg:pt-12",
+        "h-screen bg-main pt-10 z-10 shadow basis-28 w-28 lg:px-8 lg:pt-12 lg:basis-32 lg:w-32",
         "navigation-container"
       )}
     >
