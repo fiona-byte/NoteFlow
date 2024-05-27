@@ -21,7 +21,7 @@ export default function MobileNavigation() {
     <div className="navigation-wrapper">
       <nav
         className={cn(
-          "fixed bottom-0 left-0 w-full bg-main px-9 pb-5 z-[1]",
+          "fixed bottom-0 left-0 w-full bg-main px-9 pb-4 z-[1]",
           "navigation-container"
         )}
       >
