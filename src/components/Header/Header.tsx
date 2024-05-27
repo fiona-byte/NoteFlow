@@ -5,8 +5,9 @@ import { useMobile } from "@/hooks/useMobile";
 
 function Header() {
   const isMobile = useMobile();
+
   return (
-    <div className="flex justify-between items-center pb-10 md:pb-14 lg:pb-20">
+    <div className="flex justify-between items-center pb-10 md:pb-12 lg:pb-14">
       <div className="relative md:w-1/2 lg:w-1/3">
         <Search className="absolute left-4 top-4 h-4 w-4" />
         <Input
