@@ -20,7 +20,7 @@ export default function DesktopNavigation() {
       )}
     >
       <div className="flex flex-col justify-center items-center">
-        <div className="pb-12 text-center lg:pb-14">
+        <div className="pb-16 text-center lg:pb-[72px]">
           <Link to="/" className="text-xl">
             NoteFlow
           </Link>
