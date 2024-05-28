@@ -1,4 +1,4 @@
-const EmptyNotesIllustration = ({ className }: { className?: string }) => {
+const NoNotesIllustration = ({ className }: { className?: string }) => {
   return (
     <svg
       className={className}
@@ -55,4 +55,4 @@ const EmptyNotesIllustration = ({ className }: { className?: string }) => {
   );
 };
 
-export default EmptyNotesIllustration;
+export default NoNotesIllustration;
