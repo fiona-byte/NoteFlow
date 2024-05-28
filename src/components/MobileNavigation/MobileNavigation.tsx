@@ -1,19 +1,15 @@
 import { NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { NavigationLinksProps } from "@/types";
 import Heart from "@/assets/svgs/heart";
 import NotesIcon from "@/assets/svgs/notes";
 import Trash from "@/assets/svgs/trash";
 import "./style.css";
 
-type NavigationLinksProps = {
-  path: string;
-  icon: JSX.Element;
-};
-
 const navigationLinks: NavigationLinksProps[] = [
-  { path: "/", icon: <NotesIcon /> },
-  { path: "/favourites", icon: <Heart /> },
-  { path: "/trash", icon: <Trash /> },
+  { path: "/", Icon: NotesIcon },
+  { path: "/favourites", Icon: Heart },
+  { path: "/trash", Icon: Trash },
 ];
 
 export default function MobileNavigation() {
@@ -26,7 +22,7 @@ export default function MobileNavigation() {
         )}
       >
         <ul className="flex justify-between items-center">
-          {navigationLinks.map(({ path, icon }, index) => (
+          {navigationLinks.map(({ path, Icon }, index) => (
             <li key={index}>
               <NavLink
                 to={path}
@@ -36,7 +32,9 @@ export default function MobileNavigation() {
                   })
                 }
               >
-                {icon}
+                {({ isActive }) => (
+                  <Icon className={isActive ? "w-8 h-8" : ""} />
+                )}
               </NavLink>
             </li>
           ))}
