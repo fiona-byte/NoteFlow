@@ -3,10 +3,11 @@ import { NotesProps } from "@/types";
 import { Button } from "../ui/button";
 import Heart from "@/assets/svgs/heart";
 import Tag from "@/assets/svgs/tag";
+import Trash from "@/assets/svgs/trash";
 
 export default function Card({ note }: { note: NotesProps }) {
   return (
-    <div className="px-3 py-4 md:px-5 md:py-6 bg-[#571E23] rounded-3xl text-main">
+    <div className="px-3 py-4 md:px-5 md:py-6 bg-[#571E23] rounded-3xl text-main group">
       <div className="flex justify-between items-center mb-3">
         <p className="text-[11px] md:text-[13px]">{note.dateCreated}</p>
         <Button
@@ -29,10 +30,20 @@ export default function Card({ note }: { note: NotesProps }) {
           {note.noteContent}
         </p>
       </div>
-      <Button className="flex items-center h-[unset] px-2 py-1 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-lg w-fit lg:mt-6">
-        <Tag />
-        <span className="text-[13px] pl-2">{note.totalTags}</span>
-      </Button>
+      <div className="flex">
+        <div className="flex items-center gap-3 invisible translate-y-4 lg:group-hover:visible lg:group-hover:transition-all lg:group-hover:ease-in lg:group-hover:translate-y-0 lg:group-hover:duration-[250ms]">
+          <Button
+            size="icon"
+            className="flex items-center w-8 h-8 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-[50%] lg:mt-6"
+          >
+            <Trash className="*:stroke-main w-[18px] h-[18px]" />
+          </Button>
+        </div>
+        <Button className="flex items-center h-[unset] px-2 py-1 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-lg w-fit lg:mt-6">
+          <Tag />
+          <span className="text-[13px] pl-2">{note.totalTags}</span>
+        </Button>
+      </div>
     </div>
   );
 }
