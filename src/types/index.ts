@@ -8,7 +8,7 @@ export type NotesProps = {
   dateCreated: string;
   noteTitle: string;
   noteContent: string;
-  totalTags: string;
+  totalTags: number;
   tags: string[];
   favourite: boolean;
 };
