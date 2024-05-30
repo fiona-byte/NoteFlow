@@ -12,7 +12,7 @@ function NotesArchive() {
       noteTitle: "Sunken",
       noteContent:
         "My mind started to spin as the rain kept drumming on my skin.",
-      totalTags: "1",
+      totalTags: 1,
       tags: ["Poems"],
       favourite: true,
     },
@@ -22,8 +22,18 @@ function NotesArchive() {
       noteTitle: "Plans for the year",
       noteContent:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium nostrum consequatur totam fuga tempore! At perferendis corporis placeat totam officia.",
-      totalTags: "4",
-      tags: ["ToDo, Plans, Motivation, Personal"],
+      totalTags: 4,
+      tags: ["ToDo", "Plans", "Motivation", "Personal"],
+      favourite: false,
+    },
+    {
+      id: 3,
+      dateCreated: "04/06/24",
+      noteTitle: "Plans for the year",
+      noteContent:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium nostrum consequatur totam fuga tempore! At perferendis corporis placeat totam officia.",
+      totalTags: 0,
+      tags: [],
       favourite: false,
     },
   ];
