@@ -1,10 +1,12 @@
+import { useNavigate } from "react-router-dom";
+import { ListFilterIcon, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { ListFilterIcon, Search } from "lucide-react";
 import { useMobile } from "@/hooks/useMobile";
 
 function Header() {
   const isMobile = useMobile();
+  const navigate = useNavigate();
 
   return (
     <div className="flex justify-between items-center pb-10 md:pb-12 lg:pb-14">
@@ -24,7 +26,10 @@ function Header() {
           <ListFilterIcon />
         </Button>
         {!isMobile ? (
-          <Button className="text-[19px] font-normal px-5 py-6 border border-textColor hover:bg-textColor rounded-[10px]">
+          <Button
+            onClick={() => navigate("/create")}
+            className="text-[19px] font-normal px-5 py-6 border border-textColor hover:bg-textColor rounded-[10px]"
+          >
             Add
           </Button>
         ) : null}
