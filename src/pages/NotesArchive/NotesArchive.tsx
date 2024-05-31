@@ -51,12 +51,14 @@ function NotesArchive() {
             <h2 className="font-medium text-[28px] lg:text-[33px]">
               All Notes
             </h2>
-            <Link
-              to="/"
-              className="relative before:content-[''] before:block before:h-[1.5px] before:w-full before:bg-border before:rounded-sm before:absolute before:bottom-0 before:left-0 lg:before:origin-right lg:before:scale-x-0 lg:before:transition-transform hover:lg:before:origin-left hover:lg:before:scale-x-100 lg:text-lg"
-            >
-              View all
-            </Link>
+            {notes.length >= 4 ? (
+              <Link
+                to="/"
+                className="relative before:content-[''] before:block before:h-[1.5px] before:w-full before:bg-border before:rounded-sm before:absolute before:bottom-0 before:left-0 lg:before:origin-right lg:before:scale-x-0 lg:before:transition-transform hover:lg:before:origin-left hover:lg:before:scale-x-100 lg:text-lg"
+              >
+                View all
+              </Link>
+            ) : null}
           </div>
           <div className="grid grid-cols-2 gap-5 mt-6 md:grid-cols-3 lg:grid-cols-4 lg:mt-8 md:gap-y-8">
             {notes?.map((note) => (
