@@ -1,8 +1,8 @@
+import { Link } from "react-router-dom";
+import { NotesProps } from "@/types";
 import NoNotesIllustration from "@/assets/svgs/noNotes";
 import Card from "@/components/Card/Card";
 import EmptyPage from "@/components/EmptyPage/EmptyPage";
-import { NotesProps } from "@/types";
-import { Link } from "react-router-dom";
 
 function NotesArchive() {
   const notes: NotesProps[] = [
