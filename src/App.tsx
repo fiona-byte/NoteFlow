@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import NotesArchive from "./pages/NotesArchive/NotesArchive";
 import AppLayout from "./layouts/AppLayout";
+import NotesArchive from "./pages/NotesArchive/NotesArchive";
+import CreateNote from "./pages/CreateNote/CreateNote";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route path="/" element={<NotesArchive />} />
+          <Route path="/create" element={<CreateNote />} />
         </Route>
       </Routes>
     </BrowserRouter>
