@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import { NotesProps } from "@/types";
 import NoNotesIllustration from "@/assets/svgs/noNotes";
 import Card from "@/components/Card/Card";
 import EmptyPage from "@/components/EmptyPage/EmptyPage";
 
-function NotesArchive() {
+function Home() {
   const notes: NotesProps[] = [
     {
       id: 1,
@@ -66,9 +67,42 @@ function NotesArchive() {
         />
       ) : (
         <>
-          <h2 className="font-medium text-[28px] lg:text-[33px]">My Notes</h2>
-          <div className="grid grid-cols-2 gap-5 mt-6 md:grid-cols-3 lg:grid-cols-4 lg:mt-8 md:gap-y-8">
-            {notes?.map((note) => (
+          <div className="mb-16">
+            <div className="flex justify-between items-center">
+              <h2 className="font-medium text-[28px] lg:text-[33px]">
+                Favourites
+              </h2>
+              {notes.length >= 4 ? (
+                <Link
+                  to="/favourites"
+                  className="relative before:content-[''] before:block before:h-[1.5px] before:w-full before:bg-border before:rounded-sm before:absolute before:bottom-0 before:left-0 lg:before:origin-right lg:before:scale-x-0 lg:before:transition-transform hover:lg:before:origin-left hover:lg:before:scale-x-100 lg:text-lg"
+                >
+                  View all
+                </Link>
+              ) : null}
+            </div>
+            <div className="grid grid-cols-2 gap-5 mt-6 md:grid-cols-3 lg:grid-cols-4 md:gap-y-8">
+              {notes.slice(0, 4).map((note) => {
+                if (note.favourite === true)
+                  return <Card note={note} key={note.id} />;
+              })}
+            </div>
+          </div>
+          <div className="flex justify-between items-center">
+            <h2 className="font-medium text-[28px] lg:text-[33px]">
+              All Notes
+            </h2>
+            {notes.length >= 4 ? (
+              <Link
+                to="/notes"
+                className="relative before:content-[''] before:block before:h-[1.5px] before:w-full before:bg-border before:rounded-sm before:absolute before:bottom-0 before:left-0 lg:before:origin-right lg:before:scale-x-0 lg:before:transition-transform hover:lg:before:origin-left hover:lg:before:scale-x-100 lg:text-lg"
+              >
+                View all
+              </Link>
+            ) : null}
+          </div>
+          <div className="grid grid-cols-2 gap-5 mt-6 md:grid-cols-3 lg:grid-cols-4 md:gap-y-8">
+            {notes.slice(0, 4).map((note) => (
               <Card note={note} key={note.id} />
             ))}
           </div>
@@ -78,4 +112,4 @@ function NotesArchive() {
   );
 }
 
-export default NotesArchive;
+export default Home;
