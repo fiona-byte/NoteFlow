@@ -63,7 +63,7 @@ export default function Card({ note }: { note: NotesProps }) {
         {note.totalTags ? (
           <div>
             {note.tags.map((tag) => (
-              <div className="flex items-center pt-2 first:pt-0">
+              <div key={tag} className="flex items-center pt-2 first:pt-0">
                 <SquareCheckBig size="18" />
                 <span className="pl-2.5">{tag}</span>
               </div>
