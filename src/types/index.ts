@@ -1,4 +1,4 @@
-export type NavigationLinksProps = {
+export type SidebarLinksProps = {
   path: string;
   Icon: React.FC<{className?: string}>;
 };
