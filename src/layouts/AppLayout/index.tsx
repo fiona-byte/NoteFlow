@@ -10,7 +10,7 @@ function AppLayout() {
   return (
     <div className="bg-main h-screen md:flex">
       {isMobile ? <MobileNavigation /> : <DesktopNavigation />}
-      <div className="px-4 py-8 md:px-10 md:flex-1 lg:px-20 lg:py-10">
+      <div className="h-screen overflow-auto px-4 py-8 md:px-10 md:flex-1 lg:px-20 lg:py-10">
         <Header />
         <Outlet />
       </div>
