@@ -1,23 +1,22 @@
 import { Link, NavLink } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { NavigationLinksProps } from "@/types";
+import { SidebarLinksProps } from "@/types";
 import Heart from "@/assets/svgs/heart";
 import NotesIcon from "@/assets/svgs/notes";
 import Trash from "@/assets/svgs/trash";
 
-const navigationLinks: NavigationLinksProps[] = [
+const sidebarLinks: SidebarLinksProps[] = [
   { path: "/", Icon: NotesIcon },
   { path: "/favourites", Icon: Heart },
   { path: "/trash", Icon: Trash },
 ];
 
-export default function DesktopNavigation() {
+export default function DesktopSidebar() {
   return (
     <nav
-      className={cn(
-        "h-screen bg-main pt-10 z-10 shadow basis-28 w-28 lg:px-8 lg:pt-12 lg:basis-32 lg:w-32",
-        "navigation-container"
-      )}
+      className={
+        "h-screen bg-main pt-10 z-10 shadow basis-28 w-28 lg:px-8 lg:pt-12 lg:basis-32 lg:w-32"
+      }
     >
       <div className="flex flex-col justify-center items-center">
         <div className="pb-16 text-center lg:pb-[72px]">
@@ -26,7 +25,7 @@ export default function DesktopNavigation() {
           </Link>
         </div>
         <ul>
-          {navigationLinks.map(({ path, Icon }, index) => (
+          {sidebarLinks.map(({ path, Icon }, index) => (
             <li key={index} className="pb-5 lg:pb-6">
               <NavLink
                 to={path}
