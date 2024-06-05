@@ -14,7 +14,7 @@ const initialState: CreateNoteState = {
 };
 
 export const createNoteSlice = createSlice({
-  name: "createUser",
+  name: "createNote",
   initialState,
   reducers: {
     saveNoteTitle: (state, action: PayloadAction<string>) => {
