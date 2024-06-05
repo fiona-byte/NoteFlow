@@ -5,9 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { saveNoteContent } from "@/redux/reducers/createNoteSlice";
 import Placeholder from "@tiptap/extension-placeholder";
 import StarterKit from "@tiptap/starter-kit";
-import ListItem from "@tiptap/extension-list-item";
-import BulletList from "@tiptap/extension-bullet-list";
-import OrderedList from "@tiptap/extension-ordered-list";
 import Bold from "@/assets/svgs/bold";
 import Italic from "@/assets/svgs/italic";
 import Strikethrough from "@/assets/svgs/strikethrough";
@@ -24,11 +21,6 @@ const TipTap = () => {
       StarterKit,
       Placeholder.configure({
         placeholder: "Write something…",
-      }),
-      ListItem,
-      OrderedList,
-      BulletList.configure({
-        keepMarks: true,
       }),
     ],
     editorProps: {
