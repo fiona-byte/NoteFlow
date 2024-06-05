@@ -1,5 +1,8 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import { List, ListOrdered } from "lucide-react";
+import { RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { saveNoteContent } from "@/redux/reducers/createNoteSlice";
 import Placeholder from "@tiptap/extension-placeholder";
 import StarterKit from "@tiptap/starter-kit";
 import ListItem from "@tiptap/extension-list-item";
@@ -13,6 +16,9 @@ import Redo from "@/assets/svgs/redo";
 import "./TipTap.css";
 
 const TipTap = () => {
+  const { noteContent } = useSelector((store: RootState) => store.createNote);
+  const dispatch = useDispatch();
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -30,6 +36,11 @@ const TipTap = () => {
         class:
           "prose list-inside dark:prose-invert prose-sm text-lg sm:prose-base lg:prose-lg xl:prose-2xl my-4 focus:outline-none",
       },
+    },
+    content: noteContent,
+    onUpdate: ({ editor }) => {
+      const html = editor?.getHTML();
+      dispatch(saveNoteContent(html));
     },
   });
 
@@ -77,7 +88,7 @@ const TipTap = () => {
           <Strikethrough />
         </button>
         <button
-          title="Bulletlist"
+          title="Bullet list"
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           className={
             editor.isActive("bulletList")
