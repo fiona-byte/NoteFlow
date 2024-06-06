@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   Menubar,
@@ -14,16 +15,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { addFavourite, saveNoteTitle } from "@/redux/reducers/createNoteSlice";
 import TipTap from "@/components/Editor/TipTap";
 import Heart from "@/assets/svgs/heart";
+import AddTag from "@/components/AddTag/AddTag";
 
 const CreateNote = () => {
-  const { noteTitle, favourite } = useSelector(
+  const [isVisible, setIsVisible] = useState(false);
+  const { noteTitle, favourite, tags, totalTags } = useSelector(
     (store: RootState) => store.createNote
   );
   const dispatch = useDispatch();
 
+  const closeModal = () => {
+    setIsVisible(false);
+  };
+
   return (
     <div>
-      <div className="flex">
+      <div className="flex relative">
         <Input
           className="text-3xl font-medium mb-4 border-none px-0 focus-visible:ring-main placeholder:text-textColor lg:text-4xl lg:mb-5"
           placeholder="Title"
@@ -48,9 +55,23 @@ const CreateNote = () => {
               <MenubarTrigger>
                 <MoreVertical />
               </MenubarTrigger>
-              <MenubarContent align="end">
-                <MenubarItem className="text-lg">Add Tag</MenubarItem>
-              </MenubarContent>
+              {isVisible ? (
+                <AddTag
+                  tags={tags}
+                  totalTags={totalTags}
+                  styles="right-0 top-full w-1/2 md:w-1/3 lg:w-1/5"
+                  closeModal={closeModal}
+                />
+              ) : (
+                <MenubarContent align="end">
+                  <MenubarItem
+                    onClick={() => setIsVisible(true)}
+                    className="text-lg"
+                  >
+                    Add Tag
+                  </MenubarItem>
+                </MenubarContent>
+              )}
             </MenubarMenu>
           </Menubar>
         </div>
