@@ -1,20 +1,16 @@
-import { NotesProps } from "@/types";
+import { CreateNoteState } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-type CreateNoteState = NotesProps & {
-  saving: boolean;
-}
-
 const initialState: CreateNoteState = {
   id: 1,
-  dateCreated: '',
+  dateCreated: new Date(),
   noteTitle: "",
   noteContent: "",
   totalTags: 0,
   tags: [],
   favourite: false,
-  saving: false,
+  saved: false,
 };
 
 export const createNoteSlice = createSlice({
@@ -25,7 +21,8 @@ export const createNoteSlice = createSlice({
       state.noteTitle = action.payload;
     },
     saveNoteContent: (state, action: PayloadAction<string>) => {
-      state.saving = true;
+      state.saved = true;
+      state.dateCreated = new Date()
       state.noteContent = action.payload;
     },
     addFavourite: (state) => {
