@@ -3,9 +3,15 @@ export type SidebarLinksProps = {
   Icon: React.FC<{className?: string}>;
 };
 
+export type EmptyPageProps = {
+  pageHeading: string;
+  pageSubTitle: string;
+  PageIllustration: React.FC<{ className?: string }>;
+};
+
 export type NotesProps = {
   id: number;
-  dateCreated: string;
+  dateCreated: Date;
   noteTitle: string;
   noteContent: string;
   totalTags: number;
@@ -13,8 +19,3 @@ export type NotesProps = {
   favourite: boolean;
 };
 
-export type EmptyPageProps = {
-  pageHeading: string;
-  pageSubTitle: string;
-  PageIllustration: React.FC<{ className?: string }>;
-};
