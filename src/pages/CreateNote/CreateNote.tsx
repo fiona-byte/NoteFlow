@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import {
   Menubar,
   MenubarContent,
@@ -6,14 +7,18 @@ import {
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { MoreVertical } from "lucide-react";
 import type { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { saveNoteTitle } from "@/redux/reducers/createNoteSlice";
+import { addFavourite, saveNoteTitle } from "@/redux/reducers/createNoteSlice";
 import TipTap from "@/components/Editor/TipTap";
+import Heart from "@/assets/svgs/heart";
 
 const CreateNote = () => {
-  const { noteTitle } = useSelector((store: RootState) => store.createNote);
+  const { noteTitle, favourite } = useSelector(
+    (store: RootState) => store.createNote
+  );
   const dispatch = useDispatch();
 
   return (
@@ -25,16 +30,30 @@ const CreateNote = () => {
           value={noteTitle}
           onChange={(e) => dispatch(saveNoteTitle(e.target.value))}
         />
-        <Menubar>
-          <MenubarMenu>
-            <MenubarTrigger>
-              <MoreVertical />
-            </MenubarTrigger>
-            <MenubarContent align="end">
-              <MenubarItem className="text-lg">Add Tag</MenubarItem>
-            </MenubarContent>
-          </MenubarMenu>
-        </Menubar>
+        <div className="flex items-center gap-2">
+          <Button
+            onClick={() => dispatch(addFavourite())}
+            size="icon"
+            className="flex justify-center items-center bg-transparent md:w-8 md:h-8 hover:bg-transparent"
+          >
+            <Heart
+              className={cn(
+                "w-5 h-5 md:w-6 md:h-6",
+                favourite ? "fill-textColor" : ""
+              )}
+            />
+          </Button>
+          <Menubar>
+            <MenubarMenu>
+              <MenubarTrigger>
+                <MoreVertical />
+              </MenubarTrigger>
+              <MenubarContent align="end">
+                <MenubarItem className="text-lg">Add Tag</MenubarItem>
+              </MenubarContent>
+            </MenubarMenu>
+          </Menubar>
+        </div>
       </div>
       <TipTap />
     </div>
