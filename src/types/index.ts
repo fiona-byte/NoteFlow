@@ -19,3 +19,6 @@ export type NotesProps = {
   favourite: boolean;
 };
 
+export type CreateNoteState = NotesProps & {
+  saved: boolean;
+}

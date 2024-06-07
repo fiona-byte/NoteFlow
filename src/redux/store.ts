@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from 'redux-persist';
 import logger from 'redux-logger';
 import storage from 'redux-persist/lib/storage';
 import createNoteSlice from './reducers/createNoteSlice';
+import notesSlice from './reducers/notesSlice';
 
 const persistConfig = {
   key: 'root',
@@ -10,7 +11,8 @@ const persistConfig = {
 };
 
 const reducer = combineReducers({
-  createNote: createNoteSlice
+  createNote: createNoteSlice,
+  notes: notesSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, reducer);

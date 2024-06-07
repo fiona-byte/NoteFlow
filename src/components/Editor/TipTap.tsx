@@ -1,8 +1,5 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import { List, ListOrdered } from "lucide-react";
-import { RootState } from "@/redux/store";
-import { useDispatch, useSelector } from "react-redux";
-import { saveNoteContent } from "@/redux/reducers/createNoteSlice";
 import Placeholder from "@tiptap/extension-placeholder";
 import StarterKit from "@tiptap/starter-kit";
 import Bold from "@/assets/svgs/bold";
@@ -12,10 +9,11 @@ import Undo from "@/assets/svgs/undo";
 import Redo from "@/assets/svgs/redo";
 import "./TipTap.css";
 
-const TipTap = () => {
-  const { noteContent } = useSelector((store: RootState) => store.createNote);
-  const dispatch = useDispatch();
+type EditorProps = {
+  handleNoteContent: (content: string) => void;
+};
 
+const TipTap = ({ handleNoteContent }: EditorProps) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -29,10 +27,9 @@ const TipTap = () => {
           "prose list-inside dark:prose-invert prose-sm text-lg sm:prose-base lg:prose-lg xl:prose-2xl my-4 focus:outline-none",
       },
     },
-    content: noteContent,
     onUpdate: ({ editor }) => {
       const html = editor?.getHTML();
-      dispatch(saveNoteContent(html));
+      handleNoteContent(html);
     },
   });
 
