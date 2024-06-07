@@ -44,7 +44,7 @@ export default function Card({ note }: { note: NotesProps }) {
             to={`/edit/${note.id}`}
             className="block mb-3 md:text-[19px] font-normal truncate lg:mb-2"
           >
-            {note.noteTitle}
+            {!note.noteTitle ? "Untitled" : note.noteTitle}
           </Link>
           <div className="text-sm font-light leading-6 overflow-hidden max-h-20 h-20 line-clamp-3 md:text-base">
             {htmlParser(note.noteContent)}

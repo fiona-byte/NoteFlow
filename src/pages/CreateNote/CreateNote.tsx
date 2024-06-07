@@ -12,20 +12,51 @@ import { Button } from "@/components/ui/button";
 import { MoreVertical } from "lucide-react";
 import type { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavourite, saveNoteTitle } from "@/redux/reducers/createNoteSlice";
+import { addFavourite } from "@/redux/reducers/createNoteSlice";
+import { addNote } from "@/redux/reducers/notesSlice";
 import TipTap from "@/components/Editor/TipTap";
 import Heart from "@/assets/svgs/heart";
 import AddTag from "@/components/AddTag/AddTag";
 
 const CreateNote = () => {
+  const { favourite } = useSelector((store: RootState) => store.createNote);
   const [isVisible, setIsVisible] = useState(false);
-  const { noteTitle, favourite, tags, totalTags } = useSelector(
-    (store: RootState) => store.createNote
-  );
+  const [note, setNote] = useState({
+    id: 1,
+    dateCreated: new Date(),
+    noteTitle: "",
+    noteContent: "",
+    totalTags: 0,
+    tags: [],
+    favourite: false,
+    saved: false,
+  });
+
   const dispatch = useDispatch();
 
   const closeModal = () => {
     setIsVisible(false);
+  };
+
+  const handleNoteContent = (content: string) => {
+    setNote({
+      ...note,
+      noteContent: content,
+    });
+  };
+
+  const createNote = () => {
+    const { noteTitle, noteContent, tags, favourite } = note;
+    const updatedTask = {
+      id: Date.now(),
+      dateCreated: new Date(),
+      noteTitle: noteTitle,
+      noteContent: noteContent,
+      totalTags: tags.length,
+      tags: tags,
+      favourite: favourite,
+    };
+    dispatch(addNote(updatedTask));
   };
 
   return (
@@ -34,10 +65,14 @@ const CreateNote = () => {
         <Input
           className="text-3xl font-medium mb-4 border-none px-0 focus-visible:ring-main placeholder:text-textColor lg:text-4xl lg:mb-5"
           placeholder="Title"
-          value={noteTitle}
-          onChange={(e) => dispatch(saveNoteTitle(e.target.value))}
+          name="noteTitle"
+          value={note.noteTitle}
+          onChange={(e) => setNote({ ...note, noteTitle: e.target.value })}
         />
         <div className="flex items-center gap-2">
+          <Button variant="secondary" onClick={createNote}>
+            Save
+          </Button>
           <Button
             onClick={() => dispatch(addFavourite())}
             size="icon"
@@ -57,8 +92,8 @@ const CreateNote = () => {
               </MenubarTrigger>
               {isVisible ? (
                 <AddTag
-                  tags={tags}
-                  totalTags={totalTags}
+                  tags={note.tags}
+                  totalTags={note.totalTags}
                   styles="right-0 top-full w-1/2 md:w-1/3 lg:w-1/5"
                   closeModal={closeModal}
                 />
@@ -76,7 +111,7 @@ const CreateNote = () => {
           </Menubar>
         </div>
       </div>
-      <TipTap />
+      <TipTap handleNoteContent={handleNoteContent} />
     </div>
   );
 };

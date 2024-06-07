@@ -38,6 +38,7 @@ export default function AddTag({
         <>
           <Input
             type="text"
+            name="searchTags"
             className="px-3 py-1.5 md:py-2 h-[unset] rounded-lg text-sm mt-3 mb-4 md:mt-4 md:mb-6"
             placeholder="Search tags"
           />
@@ -56,6 +57,7 @@ export default function AddTag({
             type="text"
             className="px-3 py-1.5 md:py-2 h-[unset] rounded-lg text-sm mt-3 mb-4 md:mt-4 md:mb-6"
             placeholder="Tag name"
+            name="tagName"
           />
           <div className="mt-5">
             <Button className="flex items-center mx-auto px-3 h-9 font-normal hover:bg-textColor">
