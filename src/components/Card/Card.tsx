@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cn } from "@/lib/utils";
+import { format } from "date-fns";
 import { NotesProps } from "@/types";
 import { Button } from "../ui/button";
 import { htmlParser } from "@/utils/htmlParser";
@@ -24,7 +25,7 @@ export default function Card({ note }: { note: NotesProps }) {
       <div className="group">
         <div className="flex justify-between items-center mb-3">
           <p className="text-[11px] md:text-[13px]">
-            {new Date(note.dateCreated).toDateString()}
+            {format(note.dateCreated, "dd/MM/yy")}
           </p>
           <Button
             onClick={() => dispatch(addFavourite(note.id))}
