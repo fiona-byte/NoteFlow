@@ -13,6 +13,7 @@ export type NotesProps = {
   id: number;
   dateCreated: Date;
   noteTitle: string;
+  lastEdited?: Date;
   noteContent: string;
   totalTags: number;
   tags: string[];
@@ -20,5 +21,6 @@ export type NotesProps = {
 };
 
 export type CreateNoteState = NotesProps & {
+  lastEdited: Date;
   saved: boolean;
 }
