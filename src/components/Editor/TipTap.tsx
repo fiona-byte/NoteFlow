@@ -10,10 +10,11 @@ import Redo from "@/assets/svgs/redo";
 import "./TipTap.css";
 
 type EditorProps = {
+  noteContent?: string;
   handleNoteContent: (content: string) => void;
 };
 
-const TipTap = ({ handleNoteContent }: EditorProps) => {
+const TipTap = ({ noteContent, handleNoteContent }: EditorProps) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -27,6 +28,7 @@ const TipTap = ({ handleNoteContent }: EditorProps) => {
           "prose list-inside dark:prose-invert prose-sm text-lg sm:prose-base lg:prose-lg xl:prose-2xl my-4 focus:outline-none",
       },
     },
+    content: noteContent || "",
     onUpdate: ({ editor }) => {
       const html = editor?.getHTML();
       handleNoteContent(html);

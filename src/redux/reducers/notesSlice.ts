@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: {notes: NotesProps[]} = {
-    notes: []
+    notes: [],
 };
 
 export const notesSlice = createSlice({
@@ -13,11 +13,12 @@ export const notesSlice = createSlice({
     addNote: (state, action: PayloadAction<NotesProps>) => {
       state.notes = [...state.notes, action.payload]
     },
-    editNote: (state, action: PayloadAction<NotesProps>) => {
+    editNote: (state, action: PayloadAction<Partial<NotesProps> & {id: number}>) => {
         const noteToEdit = state.notes.find(note => note.id === action.payload.id);
         if (noteToEdit) {
-            noteToEdit.noteTitle = action.payload.noteTitle
-            noteToEdit.noteContent = action.payload.noteContent
+            noteToEdit.noteTitle = action.payload.noteTitle ?? ''
+            noteToEdit.noteContent = action.payload.noteContent ?? ''
+            noteToEdit.lastEdited = action.payload.lastEdited
         }
     },
     deleteNote: (state, action: PayloadAction<number>) => {
