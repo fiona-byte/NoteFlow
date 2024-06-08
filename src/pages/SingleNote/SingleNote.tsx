@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import {
@@ -14,8 +14,11 @@ import { Button } from "@/components/ui/button";
 import { MoreVertical } from "lucide-react";
 import type { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { addFavourite } from "@/redux/reducers/notesSlice";
-import { editNote } from "@/redux/reducers/notesSlice";
+import {
+  addFavourite,
+  editNote,
+  deleteNote,
+} from "@/redux/reducers/notesSlice";
 import { dateFormatter } from "@/utils/dateFormatter";
 import { NotesProps } from "@/types";
 import TipTap from "@/components/Editor/TipTap";
@@ -24,6 +27,7 @@ import AddTag from "@/components/AddTag/AddTag";
 
 const SingleNote = ({ note }: { note: NotesProps }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
   const [updatedNote, setUpdatedNote] = useState<NotesProps>(note);
 
@@ -45,8 +49,12 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
       noteContent: updatedNote.noteContent,
       lastEdited: new Date(),
     };
-
     dispatch(editNote(payload));
+  };
+
+  const handleDeleteNote = (id: number) => {
+    dispatch(deleteNote(id));
+    navigate("/");
   };
 
   return (
@@ -111,11 +119,14 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
                       >
                         Add tag
                       </MenubarItem>
+                      <MenubarItem
+                        onClick={() => handleDeleteNote(note.id)}
+                        className="text-lg"
+                      >
+                        Delete note
+                      </MenubarItem>
                     </MenubarContent>
                   )}
-                  <MenubarContent align="end">
-                    <MenubarItem className="text-lg">Delete note</MenubarItem>
-                  </MenubarContent>
                 </MenubarMenu>
               </Menubar>
             </div>
