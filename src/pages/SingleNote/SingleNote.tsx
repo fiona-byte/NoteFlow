@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
-import { format } from "date-fns";
+import { format, isToday } from "date-fns";
 import {
   Menubar,
   MenubarContent,
@@ -68,8 +68,11 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
             </p>
             {note?.lastEdited ? (
               <p className="text-xs md:text-base">
-                Last edited: {dateFormatter(note.lastEdited)} at{" "}
-                {format(note.lastEdited, "KK:mmaaa")}
+                Last edited:{" "}
+                {isToday(note.lastEdited)
+                  ? "Today"
+                  : dateFormatter(note.lastEdited)}{" "}
+                at {format(note.lastEdited, "KK:mmaaa")}
               </p>
             ) : null}
           </div>
