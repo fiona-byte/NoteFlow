@@ -22,6 +22,7 @@ const CreateNote = () => {
   const [note, setNote] = useState({
     id: Date.now(),
     dateCreated: new Date(),
+    lastEdited: new Date(),
     noteTitle: "",
     noteContent: "",
     totalTags: 0,
@@ -46,6 +47,7 @@ const CreateNote = () => {
     const updatedTask = {
       id: Date.now(),
       dateCreated: new Date(),
+      lastEdited: new Date(),
       noteTitle: noteTitle,
       noteContent: noteContent,
       totalTags: tags.length,
