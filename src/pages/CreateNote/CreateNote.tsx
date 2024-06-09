@@ -10,19 +10,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MoreVertical } from "lucide-react";
-import type { RootState } from "@/redux/store";
-import { useDispatch, useSelector } from "react-redux";
-import { addFavourite } from "@/redux/reducers/createNoteSlice";
-import { addNote } from "@/redux/reducers/notesSlice";
+import { useDispatch } from "react-redux";
+import { addNote, addFavourite } from "@/redux/reducers/notesSlice";
 import TipTap from "@/components/Editor/TipTap";
 import Heart from "@/assets/svgs/heart";
 import AddTag from "@/components/AddTag/AddTag";
 
 const CreateNote = () => {
-  const { favourite } = useSelector((store: RootState) => store.createNote);
+  const dispatch = useDispatch();
   const [isVisible, setIsVisible] = useState(false);
   const [note, setNote] = useState({
-    id: 1,
+    id: Date.now(),
     dateCreated: new Date(),
     noteTitle: "",
     noteContent: "",
@@ -31,8 +29,6 @@ const CreateNote = () => {
     favourite: false,
     saved: false,
   });
-
-  const dispatch = useDispatch();
 
   const closeModal = () => {
     setIsVisible(false);
@@ -74,14 +70,14 @@ const CreateNote = () => {
             Save
           </Button>
           <Button
-            onClick={() => dispatch(addFavourite())}
+            onClick={() => dispatch(addFavourite(note.id))}
             size="icon"
             className="flex justify-center items-center bg-transparent md:w-8 md:h-8 hover:bg-transparent"
           >
             <Heart
               className={cn(
                 "w-5 h-5 md:w-6 md:h-6",
-                favourite ? "fill-textColor" : ""
+                note.favourite ? "fill-textColor" : ""
               )}
             />
           </Button>
