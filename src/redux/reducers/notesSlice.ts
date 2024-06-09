@@ -18,7 +18,7 @@ export const notesSlice = createSlice({
         if (noteToEdit) {
             noteToEdit.noteTitle = action.payload.noteTitle ?? ''
             noteToEdit.noteContent = action.payload.noteContent ?? ''
-            noteToEdit.lastEdited = action.payload.lastEdited
+            noteToEdit.lastEdited = action.payload.lastEdited ?? new Date()
         }
     },
     deleteNote: (state, action: PayloadAction<number>) => {

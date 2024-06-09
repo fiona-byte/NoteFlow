@@ -13,7 +13,7 @@ export type NotesProps = {
   id: number;
   dateCreated: Date;
   noteTitle: string;
-  lastEdited?: Date;
+  lastEdited: Date;
   noteContent: string;
   totalTags: number;
   tags: string[];
