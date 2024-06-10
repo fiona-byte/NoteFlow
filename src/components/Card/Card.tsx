@@ -1,19 +1,26 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
 import { NotesProps } from "@/types";
 import { Button } from "../ui/button";
 import { htmlParser } from "@/utils/htmlParser";
-import { addFavourite, deleteNote } from "@/redux/reducers/notesSlice";
+import {
+  addFavourite,
+  deleteNote,
+  moveToTrash,
+  restoreNote,
+} from "@/redux/reducers/notesSlice";
 import Heart from "@/assets/svgs/heart";
 import Tag from "@/assets/svgs/tag";
 import Trash from "@/assets/svgs/trash";
 import AddTag from "../AddTag/AddTag";
+import RestoreTrash from "@/assets/svgs/restoreTrash";
 
 export default function Card({ note }: { note: NotesProps }) {
   const [isVisible, setIsVisible] = useState(false);
+  const location = useLocation();
   const dispatch = useDispatch();
 
   const closeModal = () => {
@@ -52,18 +59,40 @@ export default function Card({ note }: { note: NotesProps }) {
           </div>
         </div>
         <div className="flex">
-          <div className="flex items-center gap-3 invisible translate-y-4 lg:group-hover:visible lg:group-hover:transition-all lg:group-hover:ease-in lg:group-hover:translate-y-0 lg:group-hover:duration-[250ms]">
-            <Button
-              onClick={() => dispatch(deleteNote(note.id))}
-              size="icon"
-              className="flex items-center w-8 h-8 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-[50%] lg:mt-6"
-            >
-              <Trash className="*:stroke-main w-[18px] h-[18px]" />
-            </Button>
+          <div className="flex items-center gap-3 lg:invisible lg:translate-y-4 lg:group-hover:visible lg:group-hover:transition-all lg:group-hover:ease-in lg:group-hover:translate-y-0 lg:group-hover:duration-[250ms]">
+            {location.pathname === "/trash" ? (
+              <>
+                <Button
+                  onClick={() => dispatch(restoreNote(note.id))}
+                  size="icon"
+                  title="Restore"
+                  className="flex items-center w-8 h-8 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-[50%] lg:mt-6"
+                >
+                  <RestoreTrash className="*:stroke-main w-[18px] h-[18px]" />
+                </Button>
+                <Button
+                  onClick={() => dispatch(deleteNote(note.id))}
+                  size="icon"
+                  title="Delete forever"
+                  className="flex items-center w-8 h-8 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-[50%] lg:mt-6"
+                >
+                  <Trash className="*:stroke-main w-[18px] h-[18px]" />
+                </Button>
+              </>
+            ) : (
+              <Button
+                onClick={() => dispatch(moveToTrash(note.id))}
+                size="icon"
+                className="flex items-center w-8 h-8 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-[50%] lg:mt-6"
+              >
+                <Trash className="*:stroke-main w-[18px] h-[18px]" />
+              </Button>
+            )}
           </div>
           <Button
             onClick={() => setIsVisible(!isVisible)}
-            className="flex items-center h-[unset] px-2 py-1 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-lg w-fit lg:mt-6"
+            title="Add tag"
+            className="flex items-center text-main font-normal h-[unset] px-2 py-1 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-lg w-fit lg:mt-6"
           >
             <Tag />
             <span className="text-[13px] pl-2">{note.totalTags}</span>
