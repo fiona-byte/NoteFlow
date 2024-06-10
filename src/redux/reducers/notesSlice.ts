@@ -52,6 +52,11 @@ export const notesSlice = createSlice({
         state.notes = [...state.notes, noteToRestore];
       }
     },
+    deleteNote: (state, action: PayloadAction<number>) => {
+      state.deletedNotes = state.deletedNotes.filter(
+        (note) => note.id !== action.payload
+      );
+    },
     emptyTrash: (state) => {
       state.deletedNotes = [];
     },
@@ -69,6 +74,7 @@ export const {
   addNote,
   editNote,
   moveToTrash,
+  deleteNote,
   restoreNote,
   emptyTrash,
   addFavourite,

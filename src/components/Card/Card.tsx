@@ -8,6 +8,7 @@ import { Button } from "../ui/button";
 import { htmlParser } from "@/utils/htmlParser";
 import {
   addFavourite,
+  deleteNote,
   moveToTrash,
   restoreNote,
 } from "@/redux/reducers/notesSlice";
@@ -19,8 +20,8 @@ import RestoreTrash from "@/assets/svgs/restoreTrash";
 
 export default function Card({ note }: { note: NotesProps }) {
   const [isVisible, setIsVisible] = useState(false);
-  const dispatch = useDispatch();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const closeModal = () => {
     setIsVisible(false);
@@ -70,6 +71,7 @@ export default function Card({ note }: { note: NotesProps }) {
                   <RestoreTrash className="*:stroke-main w-[18px] h-[18px]" />
                 </Button>
                 <Button
+                  onClick={() => dispatch(deleteNote(note.id))}
                   size="icon"
                   title="Delete forever"
                   className="flex items-center w-8 h-8 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-[50%] lg:mt-6"
