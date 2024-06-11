@@ -34,18 +34,20 @@ export default function Card({ note }: { note: NotesProps }) {
           <p className="text-[11px] md:text-[13px]">
             {format(note.dateCreated, "dd/MM/yy")}
           </p>
-          <Button
-            onClick={() => dispatch(addFavourite(note.id))}
-            size="icon"
-            className="flex justify-center items-center rounded-[50%] w-[26px] h-[26px] bg-[#48191D] md:w-8 md:h-8 hover:bg-[#48191D]"
-          >
-            <Heart
-              className={cn(
-                "w-4 h-4 *:stroke-main md:w-5 md:h-5",
-                note.favourite ? "fill-main" : ""
-              )}
-            />
-          </Button>
+          {location.pathname !== "/trash" ? (
+            <Button
+              onClick={() => dispatch(addFavourite(note.id))}
+              size="icon"
+              className="flex justify-center items-center rounded-[50%] w-[26px] h-[26px] bg-[#48191D] md:w-8 md:h-8 hover:bg-[#48191D]"
+            >
+              <Heart
+                className={cn(
+                  "w-4 h-4 *:stroke-main md:w-5 md:h-5",
+                  note.favourite ? "fill-main" : ""
+                )}
+              />
+            </Button>
+          ) : null}
         </div>
         <div className="relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[27%] after:bg-gradient-to-b after:from-[#571e2300] after:from-0% after:to-[#571e23] after:to-80%">
           <Link
@@ -59,7 +61,7 @@ export default function Card({ note }: { note: NotesProps }) {
           </div>
         </div>
         <div className="flex">
-          <div className="flex items-center gap-3 lg:invisible lg:translate-y-4 lg:group-hover:visible lg:group-hover:transition-all lg:group-hover:ease-in lg:group-hover:translate-y-0 lg:group-hover:duration-[250ms]">
+          <div className="flex items-center gap-2.5 md:gap-3 lg:invisible lg:translate-y-4 lg:group-hover:visible lg:group-hover:transition-all lg:group-hover:ease-in lg:group-hover:translate-y-0 lg:group-hover:duration-[250ms]">
             {location.pathname === "/trash" ? (
               <>
                 <Button
@@ -89,14 +91,16 @@ export default function Card({ note }: { note: NotesProps }) {
               </Button>
             )}
           </div>
-          <Button
-            onClick={() => setIsVisible(!isVisible)}
-            title="Add tag"
-            className="flex items-center text-main font-normal h-[unset] px-2 py-1 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-lg w-fit lg:mt-6"
-          >
-            <Tag />
-            <span className="text-[13px] pl-2">{note.totalTags}</span>
-          </Button>
+          {location.pathname !== "/trash" ? (
+            <Button
+              onClick={() => setIsVisible(!isVisible)}
+              title="Add tag"
+              className="flex items-center text-main font-normal h-[unset] px-2 py-1 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-lg w-fit lg:mt-6"
+            >
+              <Tag />
+              <span className="text-[13px] pl-2">{note.totalTags}</span>
+            </Button>
+          ) : null}
         </div>
       </div>
       {isVisible ? (
