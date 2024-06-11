@@ -102,7 +102,6 @@ export default function Card({ note }: { note: NotesProps }) {
       {isVisible ? (
         <AddTag
           tags={note.tags}
-          totalTags={note.totalTags}
           styles="left-0 w-full"
           closeModal={closeModal}
         />

@@ -5,21 +5,15 @@ import { Plus, SquareCheckBig, X } from "lucide-react";
 
 type AddTagProps = {
   tags: string[];
-  totalTags: number;
   styles: string;
   closeModal: () => void;
 };
 
-export default function AddTag({
-  tags,
-  totalTags,
-  styles,
-  closeModal,
-}: AddTagProps) {
+export default function AddTag({ tags, styles, closeModal }: AddTagProps) {
   return (
     <div
       className={cn(
-        "p-4 absolute bg-main text-textColor shadow rounded-2xl z-10 lg:p-5",
+        "p-3.5 absolute bg-main text-textColor shadow rounded-[20px] z-10 md:p-4 lg:py-5",
         styles
       )}
     >
@@ -28,18 +22,18 @@ export default function AddTag({
         <Button
           size="icon"
           variant="ghost"
-          className="hover:bg-transparent"
+          className="h-[unset] w-[unset] hover:bg-transparent"
           onClick={() => closeModal()}
         >
           <X size="22" />
         </Button>
       </div>
-      {totalTags ? (
+      {tags?.length > 0 ? (
         <>
           <Input
             type="text"
             name="searchTags"
-            className="px-3 py-1.5 md:py-2 h-[unset] rounded-lg text-sm mt-3 mb-4 md:mt-4 md:mb-6"
+            className="px-3 py-1.5 md:py-2 h-[unset] rounded-lg text-sm mt-3 mb-4 md:mt-4 md:mb-5"
             placeholder="Search tags"
           />
           <div>
@@ -55,12 +49,12 @@ export default function AddTag({
         <>
           <Input
             type="text"
-            className="px-3 py-1.5 md:py-2 h-[unset] rounded-lg text-sm mt-3 mb-4 md:mt-4 md:mb-6"
-            placeholder="Tag name"
+            className="px-3 py-1.5 md:py-2 h-[unset] rounded-lg text-sm mt-3 mb-4 md:mt-4 md:mb-0"
+            placeholder="Input a tag name"
             name="tagName"
           />
-          <div className="mt-5">
-            <Button className="flex items-center mx-auto px-3 h-9 font-normal hover:bg-textColor">
+          <div className="mt-3">
+            <Button className="flex items-center rounded-lg px-3 font-normal md:h-10 hover:bg-textColor">
               <Plus size="18" />
               <span className="pl-1 md:pl-1.5">Add Tag</span>
             </Button>
