@@ -13,7 +13,7 @@ export default function AddTag({ tags, styles, closeModal }: AddTagProps) {
   return (
     <div
       className={cn(
-        "p-4 absolute bg-main text-textColor shadow rounded-[20px] z-10 lg:py-5",
+        "p-3.5 absolute bg-main text-textColor shadow rounded-[20px] z-10 md:p-4 lg:py-5",
         styles
       )}
     >
@@ -54,7 +54,7 @@ export default function AddTag({ tags, styles, closeModal }: AddTagProps) {
             name="tagName"
           />
           <div className="mt-3">
-            <Button className="flex items-center rounded-lg px-3 h-10 font-normal hover:bg-textColor">
+            <Button className="flex items-center rounded-lg px-3 font-normal md:h-10 hover:bg-textColor">
               <Plus size="18" />
               <span className="pl-1 md:pl-1.5">Add Tag</span>
             </Button>
