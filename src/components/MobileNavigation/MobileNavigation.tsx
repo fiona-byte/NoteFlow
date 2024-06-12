@@ -6,23 +6,23 @@ import NotesIcon from "@/assets/svgs/notes";
 import Trash from "@/assets/svgs/trash";
 import "./style.css";
 
-const sidebarLinks: SidebarLinksProps[] = [
+const navigationLinks: SidebarLinksProps[] = [
   { path: "/", Icon: NotesIcon },
   { path: "/favourites", Icon: Heart },
   { path: "/trash", Icon: Trash },
 ];
 
-export default function MobileSidebar() {
+export default function MobileNavigation() {
   return (
-    <div className="sidebar-wrapper">
+    <div className="navigation-wrapper">
       <nav
         className={cn(
           "fixed bottom-0 left-0 w-full bg-main px-9 pb-4 z-[1]",
-          "sidebar-container"
+          "navigation-container"
         )}
       >
         <ul className="flex justify-between items-center">
-          {sidebarLinks.map(({ path, Icon }, index) => (
+          {navigationLinks.map(({ path, Icon }, index) => (
             <li key={index}>
               <NavLink
                 to={path}
