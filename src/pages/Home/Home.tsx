@@ -27,7 +27,7 @@ function Home() {
                 {favourites.length >= 4 ? (
                   <Link
                     to="/favourites"
-                    className="relative before:content-[''] before:block before:h-1.5 before:w-full before:bg-border before:rounded-sm before:absolute before:bottom-0 before:left-0 lg:before:origin-right lg:before:scale-x-0 lg:before:transition-transform hover:lg:before:origin-left hover:lg:before:scale-x-100 lg:text-lg"
+                    className="relative before:content-[''] before:block before:h-[1.5px] before:w-full before:bg-border before:rounded-sm before:absolute before:bottom-0 before:left-0 lg:before:origin-right lg:before:scale-x-0 lg:before:transition-transform hover:lg:before:origin-left hover:lg:before:scale-x-100 lg:text-lg"
                   >
                     View all
                   </Link>
@@ -47,7 +47,7 @@ function Home() {
             {notes.length >= 4 ? (
               <Link
                 to="/notes"
-                className="relative before:content-[''] before:block before:h-1.5 before:w-full before:bg-border before:rounded-sm before:absolute before:bottom-0 before:left-0 lg:before:origin-right lg:before:scale-x-0 lg:before:transition-transform hover:lg:before:origin-left hover:lg:before:scale-x-100 lg:text-lg"
+                className="relative before:content-[''] before:block before:h-[1.5px] before:w-full before:bg-border before:rounded-sm before:absolute before:bottom-0 before:left-0 lg:before:origin-right lg:before:scale-x-0 lg:before:transition-transform hover:lg:before:origin-left hover:lg:before:scale-x-100 lg:text-lg"
               >
                 View all
               </Link>
