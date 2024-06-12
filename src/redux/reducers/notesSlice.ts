@@ -5,11 +5,15 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 type NoteState = {
   notes: NotesProps[];
   deletedNotes: NotesProps[];
+  favourites: NotesProps[];
+  tags: string[];
 };
 
 const initialState: NoteState = {
   notes: [],
   deletedNotes: [],
+  favourites: [],
+  tags: [],
 };
 
 export const notesSlice = createSlice({
@@ -64,8 +68,17 @@ export const notesSlice = createSlice({
       const noteToAddToFavourite = state.notes.find(
         (note) => note.id === action.payload
       );
-      if (noteToAddToFavourite)
-        noteToAddToFavourite.favourite = !noteToAddToFavourite.favourite;
+      if (noteToAddToFavourite) {
+        if (!noteToAddToFavourite.favourite) {
+          noteToAddToFavourite.favourite = true;
+          state.favourites = [...state.favourites, noteToAddToFavourite];
+        } else {
+          noteToAddToFavourite.favourite = false;
+          state.favourites = state.favourites.filter(
+            (note) => note.id !== noteToAddToFavourite.id
+          );
+        }
+      }
     },
   },
 });
