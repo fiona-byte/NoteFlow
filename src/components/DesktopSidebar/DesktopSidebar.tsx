@@ -15,7 +15,7 @@ export default function DesktopSidebar() {
   return (
     <nav
       className={
-        "h-screen bg-main pt-10 z-10 shadow basis-28 w-28 lg:px-8 lg:pt-12 lg:basis-32 lg:w-32"
+        "h-screen bg-main pt-10 z-10 shadow basis-28 w-28 lg:px-8 lg:pt-12 lg:basis-32 lg:w-32 xl:shadow-none xl:border-r xl:border-[#EBD4C7] xl:border-solid"
       }
     >
       <div className="flex flex-col justify-center items-center">
