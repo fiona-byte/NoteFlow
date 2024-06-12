@@ -14,11 +14,11 @@ const navigationLinks: SidebarLinksProps[] = [
 
 export default function MobileNavigation() {
   return (
-    <div className="sidebar-wrapper">
+    <div className="navigation-wrapper">
       <nav
         className={cn(
           "fixed bottom-0 left-0 w-full bg-main px-9 pb-4 z-[1]",
-          "sidebar-container"
+          "navigation-container"
         )}
       >
         <ul className="flex justify-between items-center">
