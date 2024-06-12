@@ -74,8 +74,6 @@
     font-family: "Clash Grotesk", sans-serif;
   }
   body {
-    @apply bg-main text-foreground;
-    font-weight: 400;
-    color: #3a3235;
+    @apply bg-main text-foreground font-normal text-textColor;
   }
 }
