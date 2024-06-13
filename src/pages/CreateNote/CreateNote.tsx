@@ -59,7 +59,7 @@ const CreateNote = () => {
 
   return (
     <div>
-      <div className="flex relative">
+      <div className="flex relative mt-6">
         <Input
           className="text-3xl font-medium mb-4 border-none px-0 focus-visible:ring-main placeholder:text-textColor lg:text-4xl lg:mb-5"
           placeholder="Title"
@@ -91,7 +91,6 @@ const CreateNote = () => {
               {isVisible ? (
                 <AddTag
                   tags={note.tags}
-                  totalTags={note.totalTags}
                   styles="right-0 top-full w-1/2 md:w-1/3 lg:w-1/5"
                   closeModal={closeModal}
                 />
