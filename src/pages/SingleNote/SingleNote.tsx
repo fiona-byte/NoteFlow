@@ -20,16 +20,23 @@ import {
   deleteNote,
 } from "@/redux/reducers/notesSlice";
 import { dateFormatter } from "@/utils/dateFormatter";
+import { useMobile } from "@/hooks/useMobile";
 import { NotesProps } from "@/types";
 import TipTap from "@/components/Editor/TipTap";
 import Heart from "@/assets/svgs/heart";
 import AddTag from "@/components/AddTag/AddTag";
+import ArrowLeft from "@/assets/svgs/arrowLeft";
 
 const SingleNote = ({ note }: { note: NotesProps }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const isMobile = useMobile();
   const [isVisible, setIsVisible] = useState(false);
   const [updatedNote, setUpdatedNote] = useState<NotesProps>(note);
+
+  const dateShown = isMobile
+    ? format(note.dateCreated, "dd/MM/yy")
+    : dateFormatter(note.dateCreated);
 
   const closeModal = () => {
     setIsVisible(false);
@@ -58,27 +65,29 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
   };
 
   return (
-    <div>
+    <div className="md:mt-3">
       {note ? (
         <>
-          <div className="flex justify-between mb-12">
+          <Button
+            className="bg-transparent px-0 py-2 mb-8 h-0"
+            onClick={() => navigate(-1)}
+          >
+            <ArrowLeft />
+          </Button>
+          <div className="flex justify-between mb-10 md:mb-12 md:pb-1 lg:mb-16">
             <p className="text-xs md:text-base">
-              Created: {dateFormatter(note.dateCreated)} at{" "}
-              {format(note.dateCreated, "KK:mmaaa")}
+              Created: {dateShown} at {format(note.dateCreated, "KK:mmaaa")}
             </p>
             {note?.lastEdited ? (
               <p className="text-xs md:text-base">
-                Last edited:{" "}
-                {isToday(note.lastEdited)
-                  ? "Today"
-                  : dateFormatter(note.lastEdited)}{" "}
-                at {format(note.lastEdited, "KK:mmaaa")}
+                Last edited: {isToday(note.lastEdited) ? "Today" : dateShown} at{" "}
+                {format(note.lastEdited, "KK:mmaaa")}
               </p>
             ) : null}
           </div>
-          <div className="flex relative">
+          <div className="flex items-center relative mb-4">
             <Input
-              className="text-3xl font-medium mb-4 border-none px-0 focus-visible:ring-main placeholder:text-textColor lg:text-4xl lg:mb-5"
+              className="text-3xl font-medium border-none p-0 focus-visible:ring-main placeholder:text-textColor lg:text-4xl lg:mb-5"
               placeholder="Title"
               name="noteTitle"
               value={updatedNote.noteTitle}
@@ -86,31 +95,30 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
                 setUpdatedNote({ ...note, noteTitle: e.target.value })
               }
             />
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-6">
               <Button variant="secondary" onClick={handleEditNote}>
                 Save
               </Button>
               <Button
                 onClick={() => dispatch(addFavourite(note.id))}
                 size="icon"
-                className="flex justify-center items-center bg-transparent md:w-8 md:h-8 hover:bg-transparent"
+                className="flex justify-center items-center bg-transparent w-[unset] h-[unset] md:w-8 md:h-8 hover:bg-transparent"
               >
                 <Heart
                   className={cn(
-                    "w-5 h-5 md:w-6 md:h-6",
+                    "w-7 h-7 md:w-6 md:h-6",
                     note.favourite ? "fill-textColor" : ""
                   )}
                 />
               </Button>
-              <Menubar>
+              <Menubar className="p-0">
                 <MenubarMenu>
-                  <MenubarTrigger>
+                  <MenubarTrigger className="w-[unset] h-[unset] p-0">
                     <MoreVertical />
                   </MenubarTrigger>
                   {isVisible ? (
                     <AddTag
                       tags={note.tags}
-                      totalTags={note.totalTags}
                       styles="right-0 top-full w-1/2 md:w-1/3 lg:w-1/5"
                       closeModal={closeModal}
                     />
