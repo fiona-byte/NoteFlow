@@ -59,33 +59,33 @@ const CreateNote = () => {
 
   return (
     <div>
-      <div className="flex relative mt-6">
+      <div className="flex relative my-6">
         <Input
-          className="text-3xl font-medium mb-4 border-none px-0 focus-visible:ring-main placeholder:text-textColor lg:text-4xl lg:mb-5"
+          className="text-3xl font-medium border-none p-0 focus-visible:ring-main placeholder:text-textColor lg:text-4xl lg:mb-5"
           placeholder="Title"
           name="noteTitle"
           value={note.noteTitle}
           onChange={(e) => setNote({ ...note, noteTitle: e.target.value })}
         />
-        <div className="flex items-center gap-2">
-          <Button variant="secondary" onClick={createNote}>
+        <div className="flex items-center gap-6">
+          <Button variant="secondary" onClick={createNote} className="hidden">
             Save
           </Button>
           <Button
             onClick={() => dispatch(addFavourite(note.id))}
             size="icon"
-            className="flex justify-center items-center bg-transparent md:w-8 md:h-8 hover:bg-transparent"
+            className="flex justify-center items-center bg-transparent w-[unset] h-[unset] md:w-8 md:h-8 hover:bg-transparent"
           >
             <Heart
               className={cn(
-                "w-5 h-5 md:w-6 md:h-6",
+                "w-7 h-7 md:w-6 md:h-6",
                 note.favourite ? "fill-textColor" : ""
               )}
             />
           </Button>
           <Menubar>
             <MenubarMenu>
-              <MenubarTrigger>
+              <MenubarTrigger className="w-[unset] h-[unset] p-0">
                 <MoreVertical />
               </MenubarTrigger>
               {isVisible ? (
