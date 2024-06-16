@@ -85,6 +85,7 @@ export default function Card({ note }: { note: NotesProps }) {
               <Button
                 onClick={() => dispatch(moveToTrash(note.id))}
                 size="icon"
+                title="Move to trash"
                 className="flex items-center w-8 h-8 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-[50%] lg:mt-6"
               >
                 <Trash className="*:stroke-main w-[18px] h-[18px]" />
