@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { format, isToday } from "date-fns";
@@ -18,6 +18,7 @@ import {
   addFavourite,
   editNote,
   deleteNote,
+  deleteNoteIfEmpty,
 } from "@/redux/reducers/notesSlice";
 import { dateFormatter } from "@/utils/dateFormatter";
 import { useMobile } from "@/hooks/useMobile";
@@ -32,7 +33,6 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
   const navigate = useNavigate();
   const isMobile = useMobile();
   const [isVisible, setIsVisible] = useState(false);
-  const [updatedNote, setUpdatedNote] = useState<NotesProps>(note);
 
   const dateShown = isMobile
     ? format(note.dateCreated, "dd/MM/yy")
@@ -42,22 +42,25 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
     setIsVisible(false);
   };
 
-  const handleNoteContent = (content: string) => {
-    setUpdatedNote({
-      ...updatedNote,
-      noteContent: content,
-    });
-  };
-
-  const handleEditNote = () => {
+  const handleEditNote = (noteTitle: string, noteContent: string) => {
     const payload = {
       id: note.id,
-      noteTitle: updatedNote.noteTitle,
-      noteContent: updatedNote.noteContent,
+      noteTitle: noteTitle,
+      noteContent: noteContent,
       lastEdited: new Date(),
+      totalTags: note.tags.length,
+      tags: note.tags,
+      favourite: note.favourite,
     };
     dispatch(editNote(payload));
   };
+
+  useEffect(() => {
+    return () => {
+      dispatch(deleteNoteIfEmpty(note.id));
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleDeleteNote = (id: number) => {
     dispatch(deleteNote(id));
@@ -90,15 +93,10 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
               className="text-3xl font-medium border-none p-0 focus-visible:ring-main placeholder:text-textColor lg:text-4xl lg:mb-5"
               placeholder="Title"
               name="noteTitle"
-              value={updatedNote.noteTitle}
-              onChange={(e) =>
-                setUpdatedNote({ ...note, noteTitle: e.target.value })
-              }
+              value={note.noteTitle}
+              onChange={(e) => handleEditNote(e.target.value, note.noteContent)}
             />
             <div className="flex items-center gap-6">
-              <Button variant="secondary" onClick={handleEditNote}>
-                Save
-              </Button>
               <Button
                 onClick={() => dispatch(addFavourite(note.id))}
                 size="icon"
@@ -142,10 +140,7 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
               </Menubar>
             </div>
           </div>
-          <TipTap
-            noteContent={note.noteContent}
-            handleNoteContent={handleNoteContent}
-          />
+          <TipTap note={note} handleEditNote={handleEditNote} />
         </>
       ) : null}
     </div>
