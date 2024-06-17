@@ -66,6 +66,15 @@ export const notesSlice = createSlice({
       state.deletedNotes = state.deletedNotes.filter(
         (note) => note.id !== action.payload
       );
+      state.notes = state.notes.filter((note) => note.id !== action.payload);
+    },
+    deleteNoteIfEmpty: (state, action: PayloadAction<number>) => {
+      const noteToDelete = state.notes.find(
+        (note) => note.id === action.payload
+      );
+      if (!noteToDelete?.noteContent && !noteToDelete?.noteTitle) {
+        state.notes = state.notes.filter((note) => note.id !== action.payload);
+      }
     },
     emptyTrash: (state) => {
       state.deletedNotes = [];
@@ -94,6 +103,7 @@ export const {
   editNote,
   moveToTrash,
   deleteNote,
+  deleteNoteIfEmpty,
   restoreNote,
   emptyTrash,
   addFavourite,
