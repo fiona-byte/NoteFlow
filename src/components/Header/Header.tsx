@@ -1,11 +1,12 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { ListFilterIcon, Plus, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useMobile } from "@/hooks/useMobile";
+import { useCreateNote } from "@/hooks/useCreateNote";
 
 function Header() {
-  const navigate = useNavigate();
+  const addNote = useCreateNote();
   const location = useLocation();
   const isMobile = useMobile();
 
@@ -39,14 +40,14 @@ function Header() {
           </Button>
           {!isMobile ? (
             <Button
-              onClick={() => navigate("/create")}
+              onClick={() => addNote()}
               className="text-[19px] font-normal px-5 py-6 border border-textColor hover:bg-textColor rounded-xl"
             >
               Add
             </Button>
           ) : !pathnameCondition ? (
             <Button
-              onClick={() => navigate("/create")}
+              onClick={() => addNote()}
               className="absolute bottom-28 right-4 z-10 w-14 h-14 bg-tertiary border-none hover:bg-tertiary rounded-full"
             >
               <Plus stroke="1.5" className="stroke-textColor" />

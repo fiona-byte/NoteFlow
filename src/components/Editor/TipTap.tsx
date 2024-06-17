@@ -1,5 +1,6 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import { List, ListOrdered } from "lucide-react";
+import { NotesProps } from "@/types";
 import Placeholder from "@tiptap/extension-placeholder";
 import StarterKit from "@tiptap/starter-kit";
 import Bold from "@/assets/svgs/bold";
@@ -10,11 +11,11 @@ import Redo from "@/assets/svgs/redo";
 import "./TipTap.css";
 
 type EditorProps = {
-  noteContent?: string;
-  handleNoteContent: (content: string) => void;
+  note: NotesProps;
+  handleEditNote: (noteTitle: string, noteContent: string) => void;
 };
 
-const TipTap = ({ noteContent, handleNoteContent }: EditorProps) => {
+const TipTap = ({ note, handleEditNote }: EditorProps) => {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -28,10 +29,10 @@ const TipTap = ({ noteContent, handleNoteContent }: EditorProps) => {
           "prose list-inside dark:prose-invert prose-sm text-lg sm:prose-base lg:prose-lg xl:prose-2xl my-4 focus:outline-none",
       },
     },
-    content: noteContent || "",
+    content: note.noteContent || "",
     onUpdate: ({ editor }) => {
       const html = editor?.getHTML();
-      handleNoteContent(html);
+      handleEditNote(note.noteTitle, html);
     },
   });
 

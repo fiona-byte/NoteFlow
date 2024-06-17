@@ -1,6 +1,7 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { Button } from "../ui/button";
 import { EmptyPageProps } from "@/types";
+import { useCreateNote } from "@/hooks/useCreateNote";
 
 function EmptyPage({
   pageHeading,
@@ -8,7 +9,7 @@ function EmptyPage({
   PageIllustration,
 }: EmptyPageProps) {
   const location = useLocation();
-  const navigate = useNavigate();
+  const addNote = useCreateNote();
 
   return (
     <div className="flex justify-center flex-col items-center p-4 w-full absolute top-[42%] left-2/4 translate-x-[-50%] translate-y-[-50%] lg:top-[44%]">
@@ -22,7 +23,7 @@ function EmptyPage({
         </p>
         {location.pathname === "/" ? (
           <Button
-            onClick={() => navigate("/create")}
+            onClick={() => addNote()}
             className="px-6 py-6 mt-6 font-normal text-[17px] mx-auto flex lg:text-[19px] hover:bg-textColor"
           >
             Add Note
