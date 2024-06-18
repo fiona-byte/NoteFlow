@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { NotesProps } from "@/types";
+import { NotesProps, TagProps } from "@/types";
 import { Button } from "../ui/button";
 import { htmlParser } from "@/utils/htmlParser";
 import {
@@ -18,7 +18,13 @@ import Trash from "@/assets/svgs/trash";
 import AddTag from "../AddTag/AddTag";
 import RestoreTrash from "@/assets/svgs/restoreTrash";
 
-export default function Card({ note }: { note: NotesProps }) {
+export default function Card({
+  note,
+  tags,
+}: {
+  note: NotesProps;
+  tags?: TagProps[];
+}) {
   const [isVisible, setIsVisible] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
@@ -99,17 +105,13 @@ export default function Card({ note }: { note: NotesProps }) {
               className="flex items-center text-main font-normal h-[unset] px-2 py-1 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-lg w-fit lg:mt-6"
             >
               <Tag />
-              <span className="text-[13px] pl-2">{note.tags.length}</span>
+              <span className="text-[13px] pl-2">{tags?.length}</span>
             </Button>
           ) : null}
         </div>
       </div>
-      {isVisible ? (
-        <AddTag
-          tags={note.tags}
-          styles="left-0 w-full"
-          closeModal={closeModal}
-        />
+      {isVisible && tags ? (
+        <AddTag tags={tags} styles="left-0 w-full" closeModal={closeModal} />
       ) : null}
     </div>
   );

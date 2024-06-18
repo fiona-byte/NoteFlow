@@ -23,3 +23,8 @@ export type CreateNoteState = NotesProps & {
   lastEdited: Date;
   saved: boolean;
 };
+
+export type TagProps = {
+  tagId: number;
+  tagName: string;
+};

@@ -1,4 +1,4 @@
-import { NotesProps } from "@/types";
+import { NotesProps, TagProps } from "@/types";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -6,7 +6,7 @@ type NoteState = {
   notes: NotesProps[];
   deletedNotes: NotesProps[];
   favourites: NotesProps[];
-  tags: string[];
+  tags: TagProps[];
 };
 
 const initialState: NoteState = {
@@ -95,6 +95,9 @@ export const notesSlice = createSlice({
         }
       }
     },
+    addTag: (state, action: PayloadAction<TagProps>) => {
+      state.tags = [...state.tags, action.payload];
+    },
   },
 });
 
@@ -106,6 +109,7 @@ export const {
   deleteNoteIfEmpty,
   restoreNote,
   emptyTrash,
+  addTag,
   addFavourite,
 } = notesSlice.actions;
 
