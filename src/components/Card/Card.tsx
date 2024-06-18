@@ -7,7 +7,7 @@ import { NotesProps, TagProps } from "@/types";
 import { Button } from "../ui/button";
 import { htmlParser } from "@/utils/htmlParser";
 import {
-  addFavourite,
+  favourite,
   deleteNote,
   moveToTrash,
   restoreNote,
@@ -42,7 +42,7 @@ export default function Card({
           </p>
           {location.pathname !== "/trash" ? (
             <Button
-              onClick={() => dispatch(addFavourite(note.id))}
+              onClick={() => dispatch(favourite(note.id))}
               size="icon"
               className="flex justify-center items-center rounded-[50%] w-[26px] h-[26px] bg-[#48191D] md:w-8 md:h-8 hover:bg-[#48191D]"
             >
