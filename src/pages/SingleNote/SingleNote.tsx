@@ -132,12 +132,14 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
                       >
                         Add tag
                       </MenubarItem>
-                      <MenubarItem
-                        onClick={() => handleDeleteNote(note.id)}
-                        className="text-lg"
-                      >
-                        Delete note
-                      </MenubarItem>
+                      {note.noteContent ? (
+                        <MenubarItem
+                          onClick={() => handleDeleteNote(note.id)}
+                          className="text-lg"
+                        >
+                          Delete note
+                        </MenubarItem>
+                      ) : null}
                     </MenubarContent>
                   )}
                 </MenubarMenu>
