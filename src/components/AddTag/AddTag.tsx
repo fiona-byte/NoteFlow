@@ -5,16 +5,22 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { Plus, X } from "lucide-react";
-import { addTag } from "@/redux/reducers/notesSlice";
-import { TagProps } from "@/types";
+import { createTag, addTag } from "@/redux/reducers/notesSlice";
+import { NotesProps, TagProps } from "@/types";
 
-type AddTagProps = {
+type CreateTagProps = {
+  note: NotesProps;
   tags: TagProps[];
   styles: string;
   closeModal: () => void;
 };
 
-export default function AddTag({ tags, styles, closeModal }: AddTagProps) {
+export default function AddTag({
+  note,
+  tags,
+  styles,
+  closeModal,
+}: CreateTagProps) {
   const dispatch = useDispatch();
   const [tagName, setTagName] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -23,14 +29,22 @@ export default function AddTag({ tags, styles, closeModal }: AddTagProps) {
     tagName.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleAddTag = (tag: string) => {
+  const handleCreateTag = (tag: string) => {
     const payload = {
       tagId: Date.now(),
       tagName: tag,
     };
-    dispatch(addTag(payload));
+    dispatch(createTag(payload));
     setTagName("");
     setSearchQuery("");
+  };
+
+  const handleCheckedChange = (tagId: number) => {
+    const payload = {
+      ...note,
+      tagId,
+    };
+    dispatch(addTag(payload));
   };
 
   return (
@@ -68,7 +82,10 @@ export default function AddTag({ tags, styles, closeModal }: AddTagProps) {
                   key={tag.tagId}
                   className="flex items-center pt-2 first:pt-0"
                 >
-                  <Checkbox checked />
+                  <Checkbox
+                    checked={note.tags.includes(tag.tagId)}
+                    onCheckedChange={() => handleCheckedChange(tag.tagId)}
+                  />
                   <span className="pl-2.5">{tag.tagName}</span>
                 </div>
               ))
@@ -78,7 +95,7 @@ export default function AddTag({ tags, styles, closeModal }: AddTagProps) {
                 <Button
                   variant="ghost"
                   className="h-0 px-0 w-fit font-medium text-sm hover:bg-main"
-                  onClick={() => handleAddTag(searchQuery)}
+                  onClick={() => handleCreateTag(searchQuery)}
                 >
                   “{searchQuery}”
                 </Button>
@@ -98,7 +115,7 @@ export default function AddTag({ tags, styles, closeModal }: AddTagProps) {
           />
           <div className="mt-3">
             <Button
-              onClick={() => handleAddTag(tagName)}
+              onClick={() => handleCreateTag(tagName)}
               disabled={!tagName}
               className="flex items-center rounded-lg px-3 font-normal md:h-10 hover:bg-textColor"
             >

@@ -15,7 +15,7 @@ export type NotesProps = {
   noteTitle: string;
   lastEdited: Date;
   noteContent: string;
-  tags: string[];
+  tags: number[];
   favourite: boolean;
 };
 

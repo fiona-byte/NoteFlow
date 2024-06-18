@@ -105,13 +105,18 @@ export default function Card({
               className="flex items-center text-main font-normal h-[unset] px-2 py-1 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-lg w-fit lg:mt-6"
             >
               <Tag />
-              <span className="text-[13px] pl-2">{tags?.length}</span>
+              <span className="text-[13px] pl-2">{note.tags.length}</span>
             </Button>
           ) : null}
         </div>
       </div>
       {isVisible && tags ? (
-        <AddTag tags={tags} styles="left-0 w-full" closeModal={closeModal} />
+        <AddTag
+          tags={tags}
+          note={note}
+          styles="left-0 w-full"
+          closeModal={closeModal}
+        />
       ) : null}
     </div>
   );

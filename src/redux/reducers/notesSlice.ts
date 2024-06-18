@@ -95,8 +95,25 @@ export const notesSlice = createSlice({
         }
       }
     },
-    addTag: (state, action: PayloadAction<TagProps>) => {
+    createTag: (state, action: PayloadAction<TagProps>) => {
       state.tags = [...state.tags, action.payload];
+    },
+    addTag: (
+      state,
+      action: PayloadAction<Partial<NotesProps> & { tagId: number }>
+    ) => {
+      const noteToAddTag = state.notes.find(
+        (note) => note.id === action.payload.id
+      );
+      if (noteToAddTag) {
+        if (noteToAddTag.tags.includes(action.payload.tagId)) {
+          noteToAddTag.tags = noteToAddTag.tags.filter(
+            (tag) => tag !== action.payload.tagId
+          );
+        } else {
+          noteToAddTag.tags = [...noteToAddTag.tags, action.payload.tagId];
+        }
+      }
     },
   },
 });
@@ -109,6 +126,7 @@ export const {
   deleteNoteIfEmpty,
   restoreNote,
   emptyTrash,
+  createTag,
   addTag,
   addFavourite,
 } = notesSlice.actions;
