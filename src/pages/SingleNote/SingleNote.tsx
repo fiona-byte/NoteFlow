@@ -71,12 +71,14 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
     <div className="md:mt-3">
       {note ? (
         <>
-          <Button
-            className="bg-transparent px-0 py-2 mb-8 h-0"
-            onClick={() => navigate(-1)}
-          >
-            <ArrowLeft />
-          </Button>
+          {isMobile ? (
+            <Button
+              className="bg-transparent px-0 py-2 mb-8 h-0 hover:bg-transparent"
+              onClick={() => navigate(-1)}
+            >
+              <ArrowLeft />
+            </Button>
+          ) : null}
           <div className="flex justify-between mb-10 md:mb-12 md:pb-1 lg:mb-16">
             <p className="text-xs md:text-base">
               Created: {dateShown} at {format(note.dateCreated, "KK:mmaaa")}
