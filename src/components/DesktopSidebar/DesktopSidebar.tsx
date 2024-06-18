@@ -20,7 +20,10 @@ export default function DesktopSidebar() {
     >
       <div className="flex flex-col justify-center items-center">
         <div className="pb-12 text-center lg:pb-[72px]">
-          <Link to="/" className="text-xl">
+          <Link
+            to="/"
+            className="text-xl font-cursive text-textColor xl:text-2xl"
+          >
             NoteFlow
           </Link>
         </div>
