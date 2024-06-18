@@ -1,6 +1,6 @@
 export type SidebarLinksProps = {
   path: string;
-  Icon: React.FC<{className?: string}>;
+  Icon: React.FC<{ className?: string }>;
 };
 
 export type EmptyPageProps = {
@@ -15,12 +15,16 @@ export type NotesProps = {
   noteTitle: string;
   lastEdited: Date;
   noteContent: string;
-  totalTags: number;
-  tags: string[];
+  tags: number[];
   favourite: boolean;
 };
 
 export type CreateNoteState = NotesProps & {
   lastEdited: Date;
   saved: boolean;
-}
+};
+
+export type TagProps = {
+  tagId: number;
+  tagName: string;
+};

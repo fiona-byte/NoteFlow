@@ -6,7 +6,9 @@ import Card from "@/components/Card/Card";
 import EmptyPage from "@/components/EmptyPage/EmptyPage";
 
 function Home() {
-  const { notes, favourites } = useSelector((store: RootState) => store.notes);
+  const { notes, favourites, tags } = useSelector(
+    (store: RootState) => store.notes
+  );
 
   return (
     <div>
@@ -55,7 +57,7 @@ function Home() {
           </div>
           <div className="grid grid-cols-2 gap-5 mt-4 md:grid-cols-3 lg:grid-cols-4 md:gap-y-8">
             {notes.slice(0, 4).map((note) => (
-              <Card note={note} key={note.id} />
+              <Card note={note} tags={tags} key={note.id} />
             ))}
           </div>
         </>
