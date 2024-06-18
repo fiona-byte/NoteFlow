@@ -12,7 +12,6 @@ export const useCreateNote = () => {
     lastEdited: new Date(),
     noteTitle: "",
     noteContent: "",
-    totalTags: 0,
     tags: [],
     favourite: false,
   };

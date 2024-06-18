@@ -48,7 +48,6 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
       noteTitle: noteTitle,
       noteContent: noteContent,
       lastEdited: new Date(),
-      totalTags: note.tags.length,
       tags: note.tags,
       favourite: note.favourite,
     };

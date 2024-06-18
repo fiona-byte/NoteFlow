@@ -99,7 +99,7 @@ export default function Card({ note }: { note: NotesProps }) {
               className="flex items-center text-main font-normal h-[unset] px-2 py-1 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-lg w-fit lg:mt-6"
             >
               <Tag />
-              <span className="text-[13px] pl-2">{note.totalTags}</span>
+              <span className="text-[13px] pl-2">{note.tags.length}</span>
             </Button>
           ) : null}
         </div>
