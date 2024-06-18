@@ -79,7 +79,7 @@ export const notesSlice = createSlice({
     emptyTrash: (state) => {
       state.deletedNotes = [];
     },
-    addFavourite: (state, action: PayloadAction<number>) => {
+    favourite: (state, action: PayloadAction<number>) => {
       const noteToAddToFavourite = state.notes.find(
         (note) => note.id === action.payload
       );
@@ -128,7 +128,7 @@ export const {
   emptyTrash,
   createTag,
   addTag,
-  addFavourite,
+  favourite,
 } = notesSlice.actions;
 
 export default notesSlice.reducer;

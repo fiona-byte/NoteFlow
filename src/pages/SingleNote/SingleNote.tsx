@@ -15,7 +15,7 @@ import { MoreVertical } from "lucide-react";
 import type { RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  addFavourite,
+  favourite,
   editNote,
   deleteNote,
   deleteNoteIfEmpty,
@@ -101,7 +101,7 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
             />
             <div className="flex items-center gap-6">
               <Button
-                onClick={() => dispatch(addFavourite(note.id))}
+                onClick={() => dispatch(favourite(note.id))}
                 size="icon"
                 className="flex justify-center items-center bg-transparent w-[unset] h-[unset] md:w-8 md:h-8 hover:bg-transparent"
               >
