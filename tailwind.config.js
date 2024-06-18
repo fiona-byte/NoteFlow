@@ -18,6 +18,7 @@ module.exports = {
     },
     fontFamily: {
       body: ['"Clash Grotesk"', "sans-serif"],
+      cursive: ["Parisienne", "cursive"],
     },
     extend: {
       colors: {

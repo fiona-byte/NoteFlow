@@ -16,7 +16,7 @@ function Header() {
   return (
     <div className="flex justify-between items-center gap-6 pb-10 md:pb-12 lg:pb-14 lg:gap-0">
       {isMobile ? (
-        <Link to="/" className="text-lg">
+        <Link to="/" className="text-2xl font-cursive">
           NoteFlow
         </Link>
       ) : null}
