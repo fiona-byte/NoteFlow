@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
-import { Plus, X } from "lucide-react";
+import { X } from "lucide-react";
 import { createTag, addTag } from "@/redux/reducers/notesSlice";
 import { NotesProps, TagProps } from "@/types";
 
@@ -108,20 +108,24 @@ export default function AddTag({
           <Input
             type="text"
             className="px-3 py-1.5 md:py-2 h-[unset] rounded-lg text-sm mt-3 mb-4 md:mt-4 md:mb-0"
-            placeholder="Input a tag name"
+            placeholder="Enter a tag name"
             value={tagName}
             onChange={(e) => setTagName(e.target.value)}
             name="tagName"
           />
-          <div className="mt-3">
-            <Button
-              onClick={() => handleCreateTag(tagName)}
-              disabled={!tagName}
-              className="flex items-center rounded-lg px-3 font-normal md:h-10 hover:bg-textColor"
-            >
-              <Plus size="18" />
-              <span className="pl-1 md:pl-1.5">Add Tag</span>
-            </Button>
+          <div className="mt-2.5">
+            {tagName ? (
+              <p className="text-sm">
+                Create tag{" "}
+                <Button
+                  variant="ghost"
+                  className="h-0 px-0 w-fit font-medium text-sm hover:bg-main"
+                  onClick={() => handleCreateTag(tagName)}
+                >
+                  “{tagName}”
+                </Button>
+              </p>
+            ) : null}
           </div>
         </>
       )}
