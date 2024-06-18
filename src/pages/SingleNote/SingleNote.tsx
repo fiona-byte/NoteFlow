@@ -29,6 +29,8 @@ import AddTag from "@/components/AddTag/AddTag";
 import ArrowLeft from "@/assets/svgs/arrowLeft";
 
 const SingleNote = ({ note }: { note: NotesProps }) => {
+  const { tags } = useSelector((store: RootState) => store.notes);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isMobile = useMobile();
@@ -115,7 +117,8 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
                   </MenubarTrigger>
                   {isVisible ? (
                     <AddTag
-                      tags={note.tags}
+                      tags={tags}
+                      note={note}
                       styles="right-0 top-full w-1/2 md:w-1/3 lg:w-1/5"
                       closeModal={closeModal}
                     />
