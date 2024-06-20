@@ -1,4 +1,9 @@
-import { Link, useLocation } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { ListFilterIcon, Plus, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -6,12 +11,15 @@ import { useMobile } from "@/hooks/useMobile";
 import { useCreateNote } from "@/hooks/useCreateNote";
 
 function Header() {
-  const addNote = useCreateNote();
   const location = useLocation();
+  const navigate = useNavigate();
+  const addNote = useCreateNote();
   const isMobile = useMobile();
 
-  const pathnameCondition =
-    location.pathname === "/create" || location.pathname.includes("edit");
+  const [searchParams] = useSearchParams();
+  const query = searchParams.get("q") ?? "";
+
+  const pathnameCondition = location.pathname.includes("edit");
 
   return (
     <div className="flex justify-between items-center gap-6 pb-10 md:pb-12 lg:pb-14 lg:gap-0">
@@ -29,6 +37,11 @@ function Header() {
             className="pr-4 pl-8 py-5 rounded-xl text-base md:pr-5 md:pl-10 md:py-6"
             type="search"
             placeholder="Search notes"
+            value={query}
+            onChange={(e) => {
+              const term = e.target.value;
+              navigate(term ? `/search?q=${term}` : "/");
+            }}
           />
         </div>
         <div className="flex md:gap-4">
