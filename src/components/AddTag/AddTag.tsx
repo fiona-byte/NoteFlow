@@ -75,7 +75,7 @@ export default function AddTag({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <div>
+          <div className="max-h-[120px] overflow-x-auto">
             {searchResults?.length > 0 ? (
               searchResults.map((tag) => (
                 <div
