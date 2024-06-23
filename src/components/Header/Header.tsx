@@ -9,6 +9,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useMobile } from "@/hooks/useMobile";
 import { useCreateNote } from "@/hooks/useCreateNote";
+import { useState } from "react";
+import FilterCard from "../FilterCard/FilterCard";
 
 function Header() {
   const location = useLocation();
@@ -19,7 +21,13 @@ function Header() {
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") ?? "";
 
+  const [isVisible, setIsVisible] = useState(false);
+
   const pathnameCondition = location.pathname.includes("edit");
+
+  const handleClose = () => {
+    setIsVisible(false);
+  };
 
   return (
     <div className="flex justify-between items-center gap-6 pb-10 md:pb-12 lg:pb-14 lg:gap-0">
@@ -44,13 +52,15 @@ function Header() {
             }}
           />
         </div>
-        <div className="flex md:gap-4">
+        <div className="flex relative md:gap-4">
           <Button
             variant="outline"
             className="px-4 py-5 rounded-xl hover:bg-transparent md:pr-5 md:py-6"
+            onClick={() => setIsVisible(true)}
           >
             <ListFilterIcon />
           </Button>
+          {isVisible && <FilterCard handleClose={handleClose} />}
           {!isMobile ? (
             <Button
               onClick={() => addNote()}

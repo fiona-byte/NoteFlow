@@ -6,7 +6,7 @@ import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
 import { X } from "lucide-react";
 
-const FilterCard = () => {
+const FilterCard = ({ handleClose }: { handleClose: () => void }) => {
   const { tags } = useSelector((store: RootState) => store.notes);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -25,6 +25,7 @@ const FilterCard = () => {
           size="icon"
           variant="ghost"
           className="h-[unset] w-[unset] hover:bg-transparent"
+          onClick={handleClose}
         >
           <X size="22" />
         </Button>
