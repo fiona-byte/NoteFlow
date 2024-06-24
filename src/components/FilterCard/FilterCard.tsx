@@ -39,12 +39,18 @@ const FilterCard = ({ handleClose }: { handleClose: () => void }) => {
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       <div>
-        {searchResults.map(({ tagId, tagName }) => (
-          <div key={tagId} className="flex items-center pt-2 first:pt-0">
-            <Checkbox />
-            <span className="pl-2.5">{tagName}</span>
-          </div>
-        ))}
+        {searchResults?.length > 0 ? (
+          searchResults.map(({ tagId, tagName }) => (
+            <div key={tagId} className="flex items-center pt-2 first:pt-0">
+              <Checkbox />
+              <span className="pl-2.5">{tagName}</span>
+            </div>
+          ))
+        ) : (
+          <p className="text-sm">
+            No results for <span className="font-medium">“{searchQuery}”</span>
+          </p>
+        )}
       </div>
     </div>
   );
