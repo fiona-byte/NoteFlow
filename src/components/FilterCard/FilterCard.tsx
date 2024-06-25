@@ -46,11 +46,11 @@ const FilterCard = ({ handleClose }: { handleClose: () => void }) => {
               <span className="pl-2.5">{tagName}</span>
             </div>
           ))
-        ) : (
+        ) : searchQuery ? (
           <p className="text-sm">
             No results for <span className="font-medium">“{searchQuery}”</span>
           </p>
-        )}
+        ) : null}
       </div>
     </div>
   );
