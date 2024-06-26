@@ -5,5 +5,6 @@ export const htmlParser = (htmlString: string) => {
   const cleanHtmlString = DOMPurify.sanitize(htmlString, {
     USE_PROFILES: { html: true },
   });
-  return parse(cleanHtmlString);
+  const content = parse(cleanHtmlString);
+  return content;
 };
