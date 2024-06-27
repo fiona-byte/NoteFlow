@@ -21,7 +21,11 @@ export const notesSlice = createSlice({
   initialState,
   reducers: {
     addNote: (state, action: PayloadAction<NotesProps>) => {
-      state.notes = [...state.notes, action.payload];
+      const newNotes = [...state.notes, action.payload];
+      state.notes = newNotes.sort(
+        (a, b) =>
+          new Date(b.dateCreated).getTime() - new Date(a.dateCreated).getTime()
+      );
     },
     editNote: (
       state,
