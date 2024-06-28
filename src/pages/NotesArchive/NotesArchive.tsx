@@ -5,7 +5,16 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 
 function NotesArchive() {
-  const { notes } = useSelector((store: RootState) => store.notes);
+  const { notes, tags, selectedTags } = useSelector(
+    (store: RootState) => store.notes
+  );
+
+  const filteredNotes =
+    selectedTags.length > 0
+      ? notes.filter((note) =>
+          note.tags.some((tagId) => selectedTags.includes(tagId))
+        )
+      : notes;
 
   return (
     <div>
@@ -17,10 +26,10 @@ function NotesArchive() {
         />
       ) : (
         <>
-          <h2 className="font-medium text-[28px] lg:text-[33px]">My Notes</h2>
+          <h2 className="font-medium text-[28px] lg:text-[33px]">All Notes</h2>
           <div className="grid grid-cols-2 gap-5 mt-6 md:grid-cols-3 lg:grid-cols-4 lg:mt-8 md:gap-y-8">
-            {notes?.map((note) => (
-              <Card note={note} key={note.id} />
+            {filteredNotes?.map((note) => (
+              <Card note={note} tags={tags} key={note.id} />
             ))}
           </div>
         </>

@@ -7,6 +7,7 @@ type NoteState = {
   deletedNotes: NotesProps[];
   favourites: NotesProps[];
   tags: TagProps[];
+  selectedTags: number[];
 };
 
 const initialState: NoteState = {
@@ -14,6 +15,7 @@ const initialState: NoteState = {
   deletedNotes: [],
   favourites: [],
   tags: [],
+  selectedTags: [],
 };
 
 export const notesSlice = createSlice({
@@ -119,6 +121,11 @@ export const notesSlice = createSlice({
         }
       }
     },
+    handleSelectedTags: (state, action: PayloadAction<number>) => {
+      if (!state.selectedTags.includes(action.payload)) {
+        state.selectedTags = [...state.selectedTags, action.payload];
+      }
+    },
   },
 });
 
@@ -133,6 +140,7 @@ export const {
   createTag,
   addTag,
   favourite,
+  handleSelectedTags,
 } = notesSlice.actions;
 
 export default notesSlice.reducer;
