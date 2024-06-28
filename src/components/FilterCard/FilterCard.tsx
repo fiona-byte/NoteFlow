@@ -1,19 +1,28 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
 import { X } from "lucide-react";
+import { handleSelectedTags } from "@/redux/reducers/notesSlice";
 
 const FilterCard = ({ handleClose }: { handleClose: () => void }) => {
-  const { tags } = useSelector((store: RootState) => store.notes);
+  const { tags, selectedTags } = useSelector((store: RootState) => store.notes);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [searchQuery, setSearchQuery] = useState("");
 
   const searchResults = tags.filter(({ tagName }) =>
     tagName.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const handleChecked = (tagId: number) => {
+    navigate("/notes");
+    dispatch(handleSelectedTags(tagId));
+  };
 
   return (
     <div className="p-3.5 absolute top-12 right-0 md:right-24 md:top-16 lg:right-24 w-64 bg-main text-textColor shadow rounded-[20px] z-10 md:p-4 lg:py-5">
@@ -42,7 +51,10 @@ const FilterCard = ({ handleClose }: { handleClose: () => void }) => {
         {searchResults?.length > 0 ? (
           searchResults.map(({ tagId, tagName }) => (
             <div key={tagId} className="flex items-center pt-2 first:pt-0">
-              <Checkbox />
+              <Checkbox
+                checked={selectedTags.includes(tagId)}
+                onCheckedChange={() => handleChecked(tagId)}
+              />
               <span className="pl-2.5">{tagName}</span>
             </div>
           ))
