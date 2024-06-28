@@ -44,7 +44,7 @@ function Home() {
           ) : null}
           <div className="flex justify-between items-center">
             <h2 className="font-medium text-[28px] lg:text-[33px]">
-              All Notes
+              Recent Notes
             </h2>
             {notes.length >= 4 ? (
               <Link
