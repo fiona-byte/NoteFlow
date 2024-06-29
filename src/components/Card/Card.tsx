@@ -107,7 +107,7 @@ export default function Card({
                   <AddTag
                     tags={tags}
                     note={note}
-                    styles="-right-9 w-40 md:-right-56 md:w-64"
+                    styles="-right-9 w-40 md:-right-52 md:w-64 lg:-right-56"
                   />
                 ) : null}
               </PopoverContent>
