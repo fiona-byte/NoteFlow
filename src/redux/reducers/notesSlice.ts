@@ -122,7 +122,11 @@ export const notesSlice = createSlice({
       }
     },
     handleSelectedTags: (state, action: PayloadAction<number>) => {
-      if (!state.selectedTags.includes(action.payload)) {
+      if (state.selectedTags.includes(action.payload)) {
+        state.selectedTags = state.selectedTags.filter(
+          (selectedTag) => selectedTag !== action.payload
+        );
+      } else {
         state.selectedTags = [...state.selectedTags, action.payload];
       }
     },

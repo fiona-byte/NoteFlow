@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Link,
   useLocation,
@@ -9,7 +10,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useMobile } from "@/hooks/useMobile";
 import { useCreateNote } from "@/hooks/useCreateNote";
-import { useState } from "react";
 import FilterCard from "../FilterCard/FilterCard";
 
 function Header() {
@@ -22,8 +22,6 @@ function Header() {
   const query = searchParams.get("q") ?? "";
 
   const [isVisible, setIsVisible] = useState(false);
-
-  const pathnameCondition = location.pathname.includes("edit");
 
   const handleClose = () => {
     setIsVisible(false);
@@ -68,7 +66,7 @@ function Header() {
             >
               Add
             </Button>
-          ) : !pathnameCondition ? (
+          ) : !location.pathname.includes("edit") ? (
             <Button
               onClick={() => addNote()}
               className="absolute bottom-28 right-4 z-10 w-14 h-14 bg-tertiary border-none hover:bg-tertiary rounded-full"
