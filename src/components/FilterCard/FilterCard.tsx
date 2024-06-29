@@ -23,7 +23,7 @@ const FilterCard = () => {
   };
 
   return (
-    <div className="p-3.5 absolute top-2 right-4 md:right-6 lg:right-28 w-64 bg-main text-textColor shadow rounded-[20px] z-10 md:p-4 lg:py-5">
+    <div className="p-3.5 absolute w-56 top-2 -right-7 md:w-64 bg-main text-textColor shadow rounded-[20px] z-10 md:p-4 lg:py-5">
       <h4 className="font-medium text-lg md:text-[19px] lg:text-xl">
         Filter by tags
       </h4>
