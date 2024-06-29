@@ -2,13 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
 import { Input } from "../ui/input";
-import { X } from "lucide-react";
 import { handleSelectedTags } from "@/redux/reducers/notesSlice";
 
-const FilterCard = ({ handleClose }: { handleClose: () => void }) => {
+const FilterCard = () => {
   const { tags, selectedTags } = useSelector((store: RootState) => store.notes);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,20 +23,10 @@ const FilterCard = ({ handleClose }: { handleClose: () => void }) => {
   };
 
   return (
-    <div className="p-3.5 absolute top-12 right-0 md:right-24 md:top-16 lg:right-24 w-64 bg-main text-textColor shadow rounded-[20px] z-10 md:p-4 lg:py-5">
-      <div className="flex justify-between items-center">
-        <h4 className="font-medium text-lg md:text-[19px] lg:text-xl">
-          Filter by tags
-        </h4>
-        <Button
-          size="icon"
-          variant="ghost"
-          className="h-[unset] w-[unset] hover:bg-transparent"
-          onClick={handleClose}
-        >
-          <X size="22" />
-        </Button>
-      </div>
+    <div className="p-3.5 absolute top-2 right-4 md:right-6 lg:right-28 w-64 bg-main text-textColor shadow rounded-[20px] z-10 md:p-4 lg:py-5">
+      <h4 className="font-medium text-lg md:text-[19px] lg:text-xl">
+        Filter by tags
+      </h4>
       <Input
         type="text"
         name="searchTags"

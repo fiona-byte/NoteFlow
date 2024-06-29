@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Link,
   useLocation,
@@ -6,6 +5,7 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { ListFilterIcon, Plus, Search } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useMobile } from "@/hooks/useMobile";
@@ -20,12 +20,6 @@ function Header() {
 
   const [searchParams] = useSearchParams();
   const query = searchParams.get("q") ?? "";
-
-  const [isVisible, setIsVisible] = useState(false);
-
-  const handleClose = () => {
-    setIsVisible(false);
-  };
 
   return (
     <div className="flex justify-between items-center gap-6 pb-10 md:pb-12 lg:pb-14 lg:gap-0">
@@ -51,14 +45,14 @@ function Header() {
           />
         </div>
         <div className="flex relative md:gap-4">
-          <Button
-            variant="outline"
-            className="px-4 py-5 rounded-xl hover:bg-transparent md:pr-5 md:py-6"
-            onClick={() => setIsVisible(true)}
-          >
-            <ListFilterIcon />
-          </Button>
-          {isVisible && <FilterCard handleClose={handleClose} />}
+          <Popover>
+            <PopoverTrigger className="px-4 py-2 border rounded-xl hover:bg-transparent md:pr-5">
+              <ListFilterIcon />
+            </PopoverTrigger>
+            <PopoverContent>
+              <FilterCard />
+            </PopoverContent>
+          </Popover>
           {!isMobile ? (
             <Button
               onClick={() => addNote()}
