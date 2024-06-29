@@ -4,7 +4,6 @@ import { cn } from "@/lib/utils";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { Checkbox } from "../ui/checkbox";
-import { X } from "lucide-react";
 import { createTag, addTag } from "@/redux/reducers/notesSlice";
 import { NotesProps, TagProps } from "@/types";
 
@@ -12,15 +11,9 @@ type CreateTagProps = {
   note: NotesProps;
   tags: TagProps[];
   styles: string;
-  closeModal: () => void;
 };
 
-export default function AddTag({
-  note,
-  tags,
-  styles,
-  closeModal,
-}: CreateTagProps) {
+export default function AddTag({ note, tags, styles }: CreateTagProps) {
   const dispatch = useDispatch();
   const [tagName, setTagName] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -54,17 +47,7 @@ export default function AddTag({
         styles
       )}
     >
-      <div className="flex justify-between items-center">
-        <h4 className="font-medium text-lg md:text-[19px] lg:text-xl">Tags</h4>
-        <Button
-          size="icon"
-          variant="ghost"
-          className="h-[unset] w-[unset] hover:bg-transparent"
-          onClick={() => closeModal()}
-        >
-          <X size="22" />
-        </Button>
-      </div>
+      <h4 className="font-medium text-lg md:text-[19px] lg:text-xl">Tags</h4>
       {tags?.length > 0 ? (
         <>
           <Input

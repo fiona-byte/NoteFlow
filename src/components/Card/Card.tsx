@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cn } from "@/lib/utils";
@@ -6,6 +5,7 @@ import { format } from "date-fns";
 import { NotesProps, TagProps } from "@/types";
 import { Button } from "../ui/button";
 import { htmlParser } from "@/utils/htmlParser";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import {
   favourite,
   deleteNote,
@@ -25,13 +25,8 @@ export default function Card({
   note: NotesProps;
   tags?: TagProps[];
 }) {
-  const [isVisible, setIsVisible] = useState(false);
   const location = useLocation();
   const dispatch = useDispatch();
-
-  const closeModal = () => {
-    setIsVisible(false);
-  };
 
   return (
     <div className="px-3 py-4 md:px-5 md:py-6 bg-[#571E23] rounded-3xl text-main relative">
@@ -66,7 +61,7 @@ export default function Card({
             {htmlParser(note.noteContent)}
           </div>
         </div>
-        <div className="flex">
+        <div className="flex justify-between items-center">
           <div className="flex items-center gap-2.5 md:gap-3 lg:invisible lg:translate-y-4 lg:group-hover:visible lg:group-hover:transition-all lg:group-hover:ease-in lg:group-hover:translate-y-0 lg:group-hover:duration-[250ms]">
             {location.pathname === "/trash" ? (
               <>
@@ -99,25 +94,27 @@ export default function Card({
             )}
           </div>
           {location.pathname !== "/trash" ? (
-            <Button
-              onClick={() => setIsVisible(!isVisible)}
-              title="Add tag"
-              className="flex items-center text-main font-normal h-[unset] px-2 py-1 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-lg w-fit lg:mt-6"
-            >
-              <Tag />
-              <span className="text-[13px] pl-2">{note.tags.length}</span>
-            </Button>
+            <Popover>
+              <PopoverTrigger
+                title="Add tag"
+                className="flex items-center text-main font-normal h-[unset] px-2 py-1 mt-3 ml-auto bg-[#48191D] hover:bg-[#48191D] rounded-lg w-fit lg:mt-6"
+              >
+                <Tag />
+                <span className="text-[13px] pl-2">{note.tags.length}</span>
+              </PopoverTrigger>
+              <PopoverContent>
+                {tags ? (
+                  <AddTag
+                    tags={tags}
+                    note={note}
+                    styles="-right-9 w-40 md:-right-56 md:w-64"
+                  />
+                ) : null}
+              </PopoverContent>
+            </Popover>
           ) : null}
         </div>
       </div>
-      {isVisible && tags ? (
-        <AddTag
-          tags={tags}
-          note={note}
-          styles="left-0 w-full"
-          closeModal={closeModal}
-        />
-      ) : null}
     </div>
   );
 }
