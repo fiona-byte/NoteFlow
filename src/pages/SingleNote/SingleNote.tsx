@@ -115,13 +115,6 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
                   <MenubarTrigger className="w-[unset] h-[unset] p-0">
                     <MoreVertical />
                   </MenubarTrigger>
-                  {/* {isVisible ? (
-                    <AddTag
-                      tags={tags}
-                      note={note}
-                      styles="right-0 top-full w-1/2 md:w-1/3 lg:w-1/5"
-                    />
-                  ) : ( */}
                   <MenubarContent align="end">
                     <MenubarSub>
                       <MenubarSubTrigger className="text-lg cursor-pointer">
@@ -144,7 +137,6 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
                       </MenubarItem>
                     ) : null}
                   </MenubarContent>
-                  {/* )} */}
                 </MenubarMenu>
               </Menubar>
             </div>
