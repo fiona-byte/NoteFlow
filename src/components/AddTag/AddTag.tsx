@@ -66,10 +66,13 @@ export default function AddTag({ note, tags, styles }: CreateTagProps) {
                   className="flex items-center pt-2 first:pt-0"
                 >
                   <Checkbox
+                    id="tags"
                     checked={note.tags.includes(tag.tagId)}
                     onCheckedChange={() => handleCheckedChange(tag.tagId)}
                   />
-                  <span className="pl-2.5">{tag.tagName}</span>
+                  <label htmlFor="tags" className="pl-2.5">
+                    {tag.tagName}
+                  </label>
                 </div>
               ))
             ) : (
