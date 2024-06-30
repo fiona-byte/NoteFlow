@@ -40,10 +40,6 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
     ? format(note.dateCreated, "dd/MM/yy")
     : dateFormatter(note.dateCreated);
 
-  const closeModal = () => {
-    setIsVisible(false);
-  };
-
   const handleEditNote = (noteTitle: string, noteContent: string) => {
     const payload = {
       id: note.id,
@@ -122,7 +118,6 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
                       tags={tags}
                       note={note}
                       styles="right-0 top-full w-1/2 md:w-1/3 lg:w-1/5"
-                      closeModal={closeModal}
                     />
                   ) : (
                     <MenubarContent align="end">
