@@ -40,10 +40,13 @@ const FilterCard = () => {
           searchResults.map(({ tagId, tagName }) => (
             <div key={tagId} className="flex items-center pt-2 first:pt-0">
               <Checkbox
+                id="tags"
                 checked={selectedTags.includes(tagId)}
                 onCheckedChange={() => handleChecked(tagId)}
               />
-              <span className="pl-2.5">{tagName}</span>
+              <label htmlFor="tags" className="pl-2.5">
+                {tagName}
+              </label>
             </div>
           ))
         ) : searchQuery ? (
