@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { format, isToday } from "date-fns";
@@ -7,6 +7,9 @@ import {
   MenubarContent,
   MenubarItem,
   MenubarMenu,
+  MenubarSub,
+  MenubarSubContent,
+  MenubarSubTrigger,
   MenubarTrigger,
 } from "@/components/ui/menubar";
 import { Input } from "@/components/ui/input";
@@ -34,7 +37,6 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isMobile = useMobile();
-  const [isVisible, setIsVisible] = useState(false);
 
   const dateShown = isMobile
     ? format(note.dateCreated, "dd/MM/yy")
@@ -113,30 +115,36 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
                   <MenubarTrigger className="w-[unset] h-[unset] p-0">
                     <MoreVertical />
                   </MenubarTrigger>
-                  {isVisible ? (
+                  {/* {isVisible ? (
                     <AddTag
                       tags={tags}
                       note={note}
                       styles="right-0 top-full w-1/2 md:w-1/3 lg:w-1/5"
                     />
-                  ) : (
-                    <MenubarContent align="end">
+                  ) : ( */}
+                  <MenubarContent align="end">
+                    <MenubarSub>
+                      <MenubarSubTrigger className="text-lg cursor-pointer">
+                        Add tag
+                        <MenubarSubContent>
+                          <AddTag
+                            tags={tags}
+                            note={note}
+                            styles="-right-44 w-48 md:right-0 top-full md:w-56 lg:right-72"
+                          />
+                        </MenubarSubContent>
+                      </MenubarSubTrigger>
+                    </MenubarSub>
+                    {note.noteContent ? (
                       <MenubarItem
-                        onClick={() => setIsVisible(true)}
+                        onClick={() => handleDeleteNote(note.id)}
                         className="text-lg"
                       >
-                        Add tag
+                        Delete note
                       </MenubarItem>
-                      {note.noteContent ? (
-                        <MenubarItem
-                          onClick={() => handleDeleteNote(note.id)}
-                          className="text-lg"
-                        >
-                          Delete note
-                        </MenubarItem>
-                      ) : null}
-                    </MenubarContent>
-                  )}
+                    ) : null}
+                  </MenubarContent>
+                  {/* )} */}
                 </MenubarMenu>
               </Menubar>
             </div>
