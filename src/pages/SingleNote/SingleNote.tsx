@@ -91,6 +91,7 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
           </div>
           <div className="flex items-center relative mb-4">
             <Input
+              autoFocus
               className="text-3xl font-medium border-none p-0 focus-visible:ring-main placeholder:text-textColor lg:text-4xl lg:mb-5"
               placeholder="Title"
               name="noteTitle"
