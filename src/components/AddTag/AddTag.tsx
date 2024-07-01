@@ -43,7 +43,7 @@ export default function AddTag({ note, tags, styles }: CreateTagProps) {
   return (
     <div
       className={cn(
-        "p-3.5 absolute bg-main text-textColor shadow rounded-[20px] z-10 md:p-4 lg:py-5",
+        "p-3.5 bg-main text-textColor shadow rounded-[20px] z-10 md:p-4 lg:py-5",
         styles
       )}
     >
