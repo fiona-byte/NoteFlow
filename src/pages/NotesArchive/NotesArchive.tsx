@@ -26,7 +26,9 @@ function NotesArchive() {
         />
       ) : (
         <>
-          <h2 className="font-medium text-[28px] lg:text-[33px]">All Notes</h2>
+          <h2 className="font-medium text-[28px] lg:text-[33px]">
+            {selectedTags.length > 0 ? "Filter Notes" : "All Notes"}
+          </h2>
           <div className="grid grid-cols-2 gap-5 mt-4 md:grid-cols-3 md:gap-y-8 lg:grid-cols-4">
             {filteredNotes?.map((note) => (
               <Card note={note} tags={tags} key={note.id} />
