@@ -10,6 +10,10 @@ function Home() {
     (store: RootState) => store.notes
   );
 
+  const favouriteNotes =
+    favourites.length > 0
+      ? notes.filter((note) => favourites.includes(note.id))
+      : null;
   return (
     <div>
       {notes.length <= 0 ? (
@@ -36,7 +40,7 @@ function Home() {
                 ) : null}
               </div>
               <div className="grid grid-cols-2 gap-5 mt-4 md:grid-cols-3 lg:grid-cols-4 md:gap-y-8">
-                {favourites.slice(0, 4).map((note) => (
+                {favouriteNotes?.slice(0, 4).map((note) => (
                   <Card note={note} key={note.id} />
                 ))}
               </div>
