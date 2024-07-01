@@ -50,17 +50,17 @@ export default function Card({
             </Button>
           ) : null}
         </div>
-        <div className="relative after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[27%] after:bg-gradient-to-b after:from-[#571e2300] after:from-0% after:to-[#571e23] after:to-80%">
-          <Link
-            to={`/edit/${note.id}`}
-            className="block mb-3 md:text-[19px] font-normal truncate lg:mb-2"
-          >
+        <Link
+          to={`/edit/${note.id}`}
+          className="relative block after:content-[''] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[27%] after:bg-gradient-to-b after:from-[#571e2300] after:from-0% after:to-[#571e23] after:to-80%"
+        >
+          <h2 className="mb-3 md:text-[19px] font-normal truncate lg:mb-2">
             {!note.noteTitle ? "Untitled" : note.noteTitle}
-          </Link>
+          </h2>
           <div className="text-sm font-light leading-6 overflow-hidden max-h-20 h-20 line-clamp-3 md:text-base">
             {htmlParser(note.noteContent)}
           </div>
-        </div>
+        </Link>
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2.5 md:gap-3 lg:invisible lg:translate-y-4 lg:group-hover:visible lg:group-hover:transition-all lg:group-hover:ease-in lg:group-hover:translate-y-0 lg:group-hover:duration-[250ms]">
             {location.pathname === "/trash" ? (
