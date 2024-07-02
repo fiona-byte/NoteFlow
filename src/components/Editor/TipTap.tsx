@@ -41,8 +41,6 @@ const TipTap = ({ note, handleEditNote }: EditorProps) => {
     return null;
   }
 
-  // console.log(editor.isFocused);
-
   return (
     <>
       <div className="py-1 flex gap-1.5 mb-4">
