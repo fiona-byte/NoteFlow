@@ -26,9 +26,10 @@ const TipTap = ({ note, handleEditNote }: EditorProps) => {
     editorProps: {
       attributes: {
         class:
-          "prose list-inside dark:prose-invert prose-sm text-lg sm:prose-base lg:prose-lg xl:prose-2xl my-4 focus:outline-none",
+          "prose list-inside lg:overflow-y-scroll lg:max-h-[53vh] dark:prose-invert prose-sm text-lg sm:prose-base lg:prose-lg xl:prose-2xl my-4 focus:outline-none",
       },
     },
+    autofocus: true,
     content: note.noteContent || "",
     onUpdate: ({ editor }) => {
       const html = editor?.getHTML();
