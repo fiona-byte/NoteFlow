@@ -145,6 +145,18 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
           <TipTap note={note} handleEditNote={handleEditNote} />
         </>
       ) : null}
+      {!isMobile ? (
+        <div className="my-10 flex items-center gap-2">
+          <p className="font-medium md:text-lg">Tags:</p>
+          <div className="flex flex-wrap gap-3">
+            {tags?.map(({ tagId, tagName }) => (
+              <p key={tagId} className="bg-tertiary px-4 py-1 rounded-lg">
+                {tagName}
+              </p>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 };
