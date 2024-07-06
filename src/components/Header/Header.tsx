@@ -31,7 +31,7 @@ function Header() {
       <div className="flex gap-2 md:justify-between md:w-full">
         <div className="relative md:w-1/2 lg:w-1/3">
           <span className="absolute left-3 top-3 md:top-4 md:left-4">
-            <Search className="h-4 w-4" />
+            <Search color="#3A3235" className="h-4 w-4" />
           </span>
           <Input
             className="pr-4 pl-8 py-5 rounded-xl text-base md:pr-5 md:pl-10 md:py-6"
@@ -58,7 +58,7 @@ function Header() {
               onClick={() => addNote()}
               className="text-[19px] font-normal px-5 py-6 border border-textColor hover:bg-textColor rounded-xl"
             >
-              Add
+              Add Note
             </Button>
           ) : !location.pathname.includes("edit") ? (
             <Button
