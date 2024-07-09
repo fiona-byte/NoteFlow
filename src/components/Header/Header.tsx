@@ -56,9 +56,9 @@ function Header() {
           {!isMobile ? (
             <Button
               onClick={() => addNote()}
-              className="text-[19px] font-normal px-5 py-6 border border-textColor hover:bg-textColor rounded-xl"
+              className="text-lg font-normal px-5 py-6 border border-textColor hover:bg-textColor rounded-xl lg:text-[19px]"
             >
-              Add Note
+              Add
             </Button>
           ) : !location.pathname.includes("edit") ? (
             <Button
