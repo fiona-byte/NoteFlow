@@ -63,7 +63,7 @@ function Header() {
           ) : !location.pathname.includes("edit") ? (
             <Button
               onClick={() => addNote()}
-              className="absolute top-[41rem] right-4 z-10 w-14 h-14 bg-tertiary border-none hover:bg-tertiary rounded-full"
+              className="absolute top-[42rem] right-4 z-10 w-14 h-14 bg-tertiary border-none hover:bg-tertiary rounded-full"
             >
               <Plus stroke="1.5" className="stroke-textColor" />
             </Button>
