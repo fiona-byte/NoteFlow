@@ -25,7 +25,7 @@ const FilterCard = () => {
   return (
     <div className="p-3.5 absolute w-56 top-2 -right-7 bg-main text-textColor shadow rounded-[20px] z-10 md:p-4 md:-right-16 md:w-64 lg:py-5">
       <h4 className="font-medium text-lg md:text-[19px] lg:text-xl">
-        Filter by tags
+        Filter by Tags
       </h4>
       <Input
         type="text"
@@ -44,7 +44,7 @@ const FilterCard = () => {
                 checked={selectedTags.includes(tagId)}
                 onCheckedChange={() => handleChecked(tagId)}
               />
-              <label htmlFor="tags" className="pl-2.5">
+              <label htmlFor="tags" className="pl-2.5 capitalize">
                 {tagName}
               </label>
             </div>
