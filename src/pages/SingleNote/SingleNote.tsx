@@ -124,8 +124,8 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
                         Add tag
                         <MenubarSubContent>
                           <AddTag
-                            tags={tags}
                             note={note}
+                            tags={tags}
                             styles="-right-44 w-48 md:right-0 top-full md:w-56 lg:right-72"
                           />
                         </MenubarSubContent>
