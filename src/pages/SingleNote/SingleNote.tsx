@@ -152,7 +152,10 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
           <p className="font-medium md:text-lg">Tags:</p>
           <div className="flex flex-wrap gap-3">
             {noteTags?.map(({ tagId, tagName }) => (
-              <p key={tagId} className="bg-tertiary px-4 py-1 rounded-lg">
+              <p
+                key={tagId}
+                className="bg-tertiary px-4 py-1 rounded-lg first-letter:uppercase"
+              >
                 {tagName}
               </p>
             ))}
