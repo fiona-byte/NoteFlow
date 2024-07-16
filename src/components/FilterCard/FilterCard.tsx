@@ -44,7 +44,7 @@ const FilterCard = () => {
                 checked={selectedTags.includes(tagId)}
                 onCheckedChange={() => handleChecked(tagId)}
               />
-              <label htmlFor="tags" className="pl-2.5 capitalize">
+              <label htmlFor="tags" className="pl-2.5 first-letter:uppercase">
                 {tagName}
               </label>
             </div>
