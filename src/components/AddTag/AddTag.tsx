@@ -70,7 +70,10 @@ export default function AddTag({ note, tags, styles }: CreateTagProps) {
                     checked={note.tags.includes(tag.tagId)}
                     onCheckedChange={() => handleCheckedChange(tag.tagId)}
                   />
-                  <label htmlFor="tags" className="pl-2.5">
+                  <label
+                    htmlFor="tags"
+                    className="pl-2.5 first-letter:uppercase"
+                  >
                     {tag.tagName}
                   </label>
                 </div>
