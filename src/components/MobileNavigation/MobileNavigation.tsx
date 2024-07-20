@@ -33,7 +33,7 @@ export default function MobileNavigation() {
                 }
               >
                 {({ isActive }) => (
-                  <Icon className={isActive ? "w-8 h-8" : ""} />
+                  <Icon className={isActive ? "w-8 h-8" : "w-7 h-7"} />
                 )}
               </NavLink>
             </li>
