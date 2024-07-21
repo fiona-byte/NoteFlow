@@ -148,7 +148,7 @@ const SingleNote = ({ note }: { note: NotesProps }) => {
         </>
       ) : null}
       {!isMobile && noteTags.length > 0 ? (
-        <div className="my-10 flex items-center gap-2">
+        <div className="mt-10 flex items-center gap-2">
           <p className="font-medium md:text-lg">Tags:</p>
           <div className="flex flex-wrap gap-3">
             {noteTags?.map(({ tagId, tagName }) => (
