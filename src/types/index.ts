@@ -19,6 +19,11 @@ export type NotesProps = {
   favourite: boolean;
 };
 
+export type NotesProp = {
+  byID: Record<string, NotesProps>;
+  allIds: number[];
+};
+
 export type CreateNoteState = NotesProps & {
   lastEdited: Date;
   saved: boolean;
