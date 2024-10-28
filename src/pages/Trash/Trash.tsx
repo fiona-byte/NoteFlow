@@ -7,8 +7,10 @@ import Card from "@/components/Card/Card";
 import EmptyPage from "@/components/EmptyPage/EmptyPage";
 
 export default function Trash() {
-  const { deletedNotes } = useSelector((store: RootState) => store.notes);
+  const { notes } = useSelector((store: RootState) => store.notes);
   const dispatch = useDispatch();
+
+  const deletedNotes = Object.values(notes.byID).filter((note) => note.deleted);
 
   return (
     <div>
